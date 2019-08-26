@@ -26,6 +26,7 @@
       "groupName": "OpenCensus packages"
     }
   ],
+  "prHourlyLimit": 5,
   "semanticCommits": true,
   "semanticPrefix": "deps"
 }
