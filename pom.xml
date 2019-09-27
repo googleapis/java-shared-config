@@ -195,7 +195,11 @@
                 <requireJavaVersion>
                   <version>[1.7,)</version>
                 </requireJavaVersion>
-                <requireUpperBoundDeps/>
+                <requireUpperBoundDeps>
+                  <excludes>
+                    <exclude>org.codehaus.mojo:animal-sniffer-annotations</exclude>
+                  </excludes>
+                </requireUpperBoundDeps>
               </rules>
             </configuration>
           </execution>
