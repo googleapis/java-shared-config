@@ -179,50 +179,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>com.google.cloud.tools</groupId>
-            <artifactId>linkage-checker-enforcer-rules</artifactId>
-            <version>1.0.0</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>enforce</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>[3.0,)</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>[1.7,)</version>
-                </requireJavaVersion>
-                <requireUpperBoundDeps/>
-              </rules>
-            </configuration>
-          </execution>
-          <execution>
-            <id>enforce-linkage-checker</id>
-            <!-- Important! Should run after compile -->
-            <phase>verify</phase>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <LinkageCheckerRule
-                    implementation="com.google.cloud.tools.dependencies.enforcer.LinkageCheckerRule"/>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
@@ -420,6 +376,50 @@
                   <violationSeverity>error</violationSeverity>
                   <failsOnError>true</failsOnError>
                   <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <dependencies>
+              <dependency>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>linkage-checker-enforcer-rules</artifactId>
+                <version>1.0.0</version>
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <id>enforce</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>[3.0,)</version>
+                    </requireMavenVersion>
+                    <requireJavaVersion>
+                      <version>[1.7,)</version>
+                    </requireJavaVersion>
+                    <requireUpperBoundDeps/>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>enforce-linkage-checker</id>
+                <!-- Important! Should run after compile -->
+                <phase>verify</phase>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <LinkageCheckerRule
+                        implementation="com.google.cloud.tools.dependencies.enforcer.LinkageCheckerRule"/>
+                  </rules>
                 </configuration>
               </execution>
             </executions>
