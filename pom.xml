@@ -542,6 +542,7 @@
                   <violationSeverity>error</violationSeverity>
                   <failsOnError>true</failsOnError>
                   <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                  <excludes>**/AutoValue_*.java</excludes>
                 </configuration>
               </execution>
             </executions>
