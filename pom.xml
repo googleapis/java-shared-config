@@ -542,6 +542,12 @@
                   <violationSeverity>error</violationSeverity>
                   <failsOnError>true</failsOnError>
                   <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                  <sourceDirectories>
+                    <sourceDirectory>src/main/java</sourceDirectory>
+                  </sourceDirectories>
+                  <testSourceDirectories>
+                    <testSourceDirectory>src/test/java</testSourceDirectory>
+                  </testSourceDirectories>
                 </configuration>
               </execution>
             </executions>
