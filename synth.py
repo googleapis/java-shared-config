@@ -14,11 +14,14 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool.languages.java as java
-
-AUTOSYNTH_MULTIPLE_COMMITS = True
-
-java.common_templates(excludes=[
+import synthtool as s
+import synthtool.gcp as gcp
+import logging
+logging.basicConfig(level=logging.DEBUG)
+common_templates = gcp.CommonTemplates()
+templates = common_templates.java_library()
+s.copy(templates, excludes=[
+  ".gitignore",
   "README.md",
   ".github/release-please.yml",
 ])
