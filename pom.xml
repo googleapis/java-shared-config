@@ -572,5 +572,97 @@
         <skipITs>false</skipITs>
       </properties>
     </profile>
+    <profile>
+      <id>devsite-apidocs</id>
+      <activation>
+        <property>
+          <name>devsite.template</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- Generate API docs using Doclava for the developer site. -->
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <!-- Note: version 3.x.x uses additionalOption instead of additionalparam. -->
+            <version>3.1.1</version>
+            <executions>
+              <execution>
+                <phase>site</phase>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <docletArtifact>
+                <groupId>com.google.doclava</groupId>
+                <artifactId>doclava</artifactId>
+                <version>1.0.6</version>
+              </docletArtifact>
+              <doclet>com.google.doclava.Doclava</doclet>
+              <bootclasspath>${sun.boot.class.path}</bootclasspath>
+              <additionalDependencies>
+                <additionalDependency>
+                  <groupId>com.google.j2objc</groupId>
+                  <artifactId>j2objc-annotations</artifactId>
+                  <version>1.3</version>
+                </additionalDependency>
+              </additionalDependencies>
+              <additionalOptions>
+                <additionalOption>-hdf</additionalOption>
+                <additionalOption>book.path</additionalOption>
+                <additionalOption>/java/_book.yaml</additionalOption>
+                <additionalOption>-hdf</additionalOption>
+                <additionalOption>project.path</additionalOption>
+                <additionalOption>/_project.yaml</additionalOption>
+                <additionalOption>-hdf</additionalOption>
+                <additionalOption>devsite.path</additionalOption>
+                <additionalOption>/java/docs/reference/</additionalOption>
+                <additionalOption>-d</additionalOption>
+                <additionalOption>${project.build.directory}/apidocs</additionalOption>
+                <additionalOption>-templatedir</additionalOption>
+                <additionalOption>${devsite.template}</additionalOption>
+                <additionalOption>-toroot</additionalOption>
+                <additionalOption>/java/docs/reference/</additionalOption>
+                <additionalOption>-yaml</additionalOption>
+                <additionalOption>_toc.yaml</additionalOption>
+                <additionalOption>-warning</additionalOption>
+                <additionalOption>101</additionalOption>
+              </additionalOptions>
+              <useStandardDocletOptions>false</useStandardDocletOptions>
+              <additionalJOption>-J-Xmx1024m</additionalJOption>
+            </configuration>
+          </plugin>
+          <plugin>
+            <!-- Clean up some references and files. -->
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <phase>site</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <echo message="Updating relative links in API docs" />
+                    <replace dir="${project.build.directory}/apidocs" token="href=&quot;com" value="href=&quot;/java/docs/reference/com" />
+                    <copy file="${project.build.directory}/apidocs/assets/_toc.yaml" todir="${project.build.directory}/apidocs/reference" />
+                    <delete file="${project.build.directory}/apidocs/reference/classes.html" />
+                    <delete file="${project.build.directory}/apidocs/reference/hierarchy.html" />
+                    <delete file="${project.build.directory}/apidocs/reference/index.html" />
+                    <delete file="${project.build.directory}/apidocs/reference/lists.js" />
+                    <delete file="${project.build.directory}/apidocs/reference/package-list" />
+                    <delete file="${project.build.directory}/apidocs/reference/packages.html" />
+                    <delete file="${project.build.directory}/apidocs/reference/current.xml" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
