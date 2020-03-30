@@ -1,5 +1,18 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/googleapis/java-shared-config/compare/v0.4.0...v0.4.1) (2020-03-30)
+
+
+### Bug Fixes
+
+* declare com.coveo:fmt-maven-plugin version/configuration ([#90](https://www.github.com/googleapis/java-shared-config/issues/90)) ([5cf71a6](https://www.github.com/googleapis/java-shared-config/commit/5cf71a6ed699907082756e70c2fdee6ad3632f38))
+
+
+### Dependencies
+
+* update dependency com.google.cloud.samples:shared-configuration to v1.0.13 ([#118](https://www.github.com/googleapis/java-shared-config/issues/118)) ([58ae69e](https://www.github.com/googleapis/java-shared-config/commit/58ae69eb5ba037963cdaed0c2b0e30663bc873eb))
+* update dependency com.puppycrawl.tools:checkstyle to v8.29 ([f62292d](https://www.github.com/googleapis/java-shared-config/commit/f62292dab75699a75f8a7d499fe2ccfb7ee93783))
+
 ## [0.4.0](https://www.github.com/googleapis/java-shared-config/compare/v0.3.1...v0.4.0) (2020-01-08)
 
 
