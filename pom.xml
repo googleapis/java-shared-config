@@ -576,6 +576,7 @@
       <id>devsite-apidocs</id>
       <activation>
         <property>
+          <!-- Activate with the -Ddevsite.template=/path/to/templates flag. -->
           <name>devsite.template</name>
         </property>
       </activation>
@@ -620,7 +621,7 @@
                 <additionalOption>devsite.path</additionalOption>
                 <additionalOption>/java/docs/reference/</additionalOption>
                 <additionalOption>-d</additionalOption>
-                <additionalOption>${project.build.directory}/apidocs</additionalOption>
+                <additionalOption>${project.build.directory}/devsite</additionalOption>
                 <additionalOption>-templatedir</additionalOption>
                 <additionalOption>${devsite.template}</additionalOption>
                 <additionalOption>-toroot</additionalOption>
@@ -631,7 +632,6 @@
                 <additionalOption>101</additionalOption>
               </additionalOptions>
               <useStandardDocletOptions>false</useStandardDocletOptions>
-              <additionalJOption>-J-Xmx1024m</additionalJOption>
             </configuration>
           </plugin>
           <plugin>
@@ -647,15 +647,19 @@
                 <configuration>
                   <target>
                     <echo message="Updating relative links in API docs" />
-                    <replace dir="${project.build.directory}/apidocs" token="href=&quot;com" value="href=&quot;/java/docs/reference/com" />
-                    <copy file="${project.build.directory}/apidocs/assets/_toc.yaml" todir="${project.build.directory}/apidocs/reference" />
-                    <delete file="${project.build.directory}/apidocs/reference/classes.html" />
-                    <delete file="${project.build.directory}/apidocs/reference/hierarchy.html" />
-                    <delete file="${project.build.directory}/apidocs/reference/index.html" />
-                    <delete file="${project.build.directory}/apidocs/reference/lists.js" />
-                    <delete file="${project.build.directory}/apidocs/reference/package-list" />
-                    <delete file="${project.build.directory}/apidocs/reference/packages.html" />
-                    <delete file="${project.build.directory}/apidocs/reference/current.xml" />
+                    <!-- TODO: What is the right behavior for io* and google*? -->
+                    <replace dir="${project.build.directory}/devsite" token="href=&quot;com" value="href=&quot;/java/docs/reference/com" />
+                    <replace dir="${project.build.directory}/devsite" token="href=&quot;io" value="href=&quot;/java/docs/reference/io" />
+                    <replace dir="${project.build.directory}/devsite" token="href=&quot;google" value="href=&quot;/java/docs/reference/google" />
+                    <copy file="${project.build.directory}/devsite/assets/_toc.yaml" todir="${project.build.directory}/devsite/reference" />
+                    <echo message="Removing files not needed by Devsite" />
+                    <delete file="${project.build.directory}/devsite/reference/classes.html" />
+                    <delete file="${project.build.directory}/devsite/reference/hierarchy.html" />
+                    <delete file="${project.build.directory}/devsite/reference/index.html" />
+                    <delete file="${project.build.directory}/devsite/reference/lists.js" />
+                    <delete file="${project.build.directory}/devsite/reference/package-list" />
+                    <delete file="${project.build.directory}/devsite/reference/packages.html" />
+                    <delete file="${project.build.directory}/devsite/reference/current.xml" />
                   </target>
                 </configuration>
               </execution>
