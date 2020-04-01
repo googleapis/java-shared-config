@@ -657,7 +657,6 @@
                     <delete file="${project.build.directory}/devsite/reference/hierarchy.html" />
                     <delete file="${project.build.directory}/devsite/reference/index.html" />
                     <delete file="${project.build.directory}/devsite/reference/lists.js" />
-                    <delete file="${project.build.directory}/devsite/reference/package-list" />
                     <delete file="${project.build.directory}/devsite/reference/packages.html" />
                     <delete file="${project.build.directory}/devsite/reference/current.xml" />
                   </target>
