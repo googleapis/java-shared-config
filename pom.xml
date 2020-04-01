@@ -616,7 +616,7 @@
                 <additionalOption>/java/_book.yaml</additionalOption>
                 <additionalOption>-hdf</additionalOption>
                 <additionalOption>project.path</additionalOption>
-                <additionalOption>/_project.yaml</additionalOption>
+                <additionalOption>/java/_project.yaml</additionalOption>
                 <additionalOption>-hdf</additionalOption>
                 <additionalOption>devsite.path</additionalOption>
                 <additionalOption>/java/docs/reference/</additionalOption>
