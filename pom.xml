@@ -755,7 +755,7 @@
                 <path>
                   <groupId>com.google.auto.value</groupId>
                   <artifactId>auto-value</artifactId>
-                  <version>${auto-value.version}</version>f
+                  <version>${auto-value.version}</version>
                 </path>
                 <!--
                 There is currently no available version of auto-service-annotations
