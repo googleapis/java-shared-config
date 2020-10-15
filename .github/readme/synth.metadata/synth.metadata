@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/java-shared-config.git",
+        "sha": "3213d373bd9059907158b41ec4b9f0aacc80d242"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "27e0e916cbfdb3d5ff6639b686cc04f78a0b0386"
+      }
+    }
+  ]
+}
