@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - master
+    - java7
   pull_request:
 name: ci
 jobs:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [7, 8, 11]
+        java: [8, 11]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
