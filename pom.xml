@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.2.0</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.2.1-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Google Cloud</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -632,7 +632,7 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>9.0.1</version>
+                <version>9.1</version>
               </dependency>
             </dependencies>
             <executions>
@@ -759,7 +759,7 @@
                 <path>
                   <groupId>com.google.auto.service</groupId>
                   <artifactId>auto-service-annotations</artifactId>
-                  <version>1.0</version>
+                  <version>1.0.1</version>
                 </path>
               </annotationProcessorPaths>
             </configuration>
@@ -776,7 +776,7 @@
         <dependency>
           <groupId>com.google.cloud</groupId>
           <artifactId>native-image-support</artifactId>
-          <version>0.8.0</version>
+          <version>0.9.0</version>
           <scope>test</scope>
         </dependency>
 
@@ -827,6 +827,7 @@
               <buildArgs>
                 <buildArg>--no-fallback</buildArg>
                 <buildArg>--no-server</buildArg>
+                <buildArg>--features=com.google.cloud.nativeimage.features.ProtobufMessageFeature</buildArg>
               </buildArgs>
             </configuration>
           </plugin>
