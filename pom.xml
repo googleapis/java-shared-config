@@ -63,7 +63,7 @@
     <site.installationModule>${project.artifactId}</site.installationModule>
     <report.jxr.inherited>false</report.jxr.inherited>
     <skipITs>true</skipITs>
-    <auto-value-annotation.version>1.8.2</auto-value-annotation.version>
+    <auto-value-annotation.version>1.9</auto-value-annotation.version>
     <docRoot>/java/docs/reference/</docRoot>
   </properties>
 
@@ -182,7 +182,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.9.1</version>
+          <version>3.10.0</version>
           <configuration>
             <skipDeploy>true</skipDeploy>
           </configuration>
@@ -632,7 +632,7 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>9.2</version>
+                <version>9.2.1</version>
               </dependency>
             </dependencies>
             <executions>
@@ -790,7 +790,7 @@
         <dependency>
           <groupId>org.graalvm.buildtools</groupId>
           <artifactId>junit-platform-native</artifactId>
-          <version>0.9.8</version>
+          <version>0.9.9</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -814,7 +814,7 @@
           <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
-            <version>0.9.8</version>
+            <version>0.9.9</version>
             <extensions>true</extensions>
             <executions>
               <execution>
