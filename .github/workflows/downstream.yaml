@@ -18,7 +18,7 @@ jobs:
         - java-storage
         - java-pubsub
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: stCarolas/setup-maven@v4
       with:
         maven-version: 3.8.1
