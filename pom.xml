@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.2.7</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.2.8-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Google Cloud</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -131,7 +131,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>3.0.0-M4</version>
           <configuration>
-            <forkedProcessTimeoutInSeconds>1200</forkedProcessTimeoutInSeconds>
+            <forkedProcessTimeoutInSeconds>3600</forkedProcessTimeoutInSeconds>
             <reportNameSuffix>sponge_log</reportNameSuffix>
             <includes>
               <include>**/IT*.java</include>
