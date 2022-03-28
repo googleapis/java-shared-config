@@ -17,6 +17,11 @@ jobs:
         - java-spanner
         - java-storage
         - java-pubsub
+        job-type:
+        - dependencies
+        - test
+        - lint
+        - clirr
     steps:
     - uses: actions/checkout@v2
     - uses: stCarolas/setup-maven@v4
@@ -28,4 +33,4 @@ jobs:
     - run: java -version
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
-    - run: .kokoro/client-library-check.sh ${{matrix.repo}}
+    - run: .kokoro/client-library-check.sh ${{matrix.repo}} ${{matrix.job-type}}
