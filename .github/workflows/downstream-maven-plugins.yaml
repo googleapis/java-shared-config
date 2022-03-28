@@ -12,13 +12,11 @@ jobs:
       matrix:
         java: [8, 11]
         repo:
+        # GAPIC library
+        - java-trace
+        # Handwritten library
         - java-bigquery
-        - java-bigqueryconnection
-        - java-spanner
-        - java-storage
-        - java-pubsub
         job-type:
-        - dependencies
         - test
         - lint
         - clirr
@@ -31,6 +29,5 @@ jobs:
       with:
         java-version: ${{matrix.java}}
     - run: java -version
-    - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
     - run: .kokoro/client-library-check.sh ${{matrix.repo}} ${{matrix.job-type}}
