@@ -27,7 +27,6 @@ java.common_templates(
         ".github/release-please.yml",
         ".github/workflows/auto-release.yaml",
         ".github/workflows/samples.yaml",
-        ".github/sync-repo-settings.yaml",
         "samples/*",
     ]
 )
