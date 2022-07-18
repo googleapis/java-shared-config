@@ -203,6 +203,10 @@
               <ignoredUnusedDeclaredDependency>javax.annotation:javax.annotation-api
               </ignoredUnusedDeclaredDependency>
             </ignoredUnusedDeclaredDependencies>
+            <ignoredNonTestScopedDependencies>
+              <ignoredNonTestScopedDependency>:::*
+              </ignoredNonTestScopedDependency>
+            </ignoredNonTestScopedDependencies
           </configuration>
         </plugin>
         <plugin>
