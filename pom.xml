@@ -203,10 +203,13 @@
               <ignoredUnusedDeclaredDependency>javax.annotation:javax.annotation-api
               </ignoredUnusedDeclaredDependency>
             </ignoredUnusedDeclaredDependencies>
+            <!-- TODO: Try to remove these exclusions by updating handwritten libs -->
             <ignoredNonTestScopedDependencies>
               <ignoredNonTestScopedDependency>io.grpc:*
               </ignoredNonTestScopedDependency>
               <ignoredNonTestScopedDependency>com.google.protobuf:*
+              </ignoredNonTestScopedDependency>
+              <ignoredNonTestScopedDependency>com.google.api.grpc:*
               </ignoredNonTestScopedDependency>
             </ignoredNonTestScopedDependencies>
           </configuration>
