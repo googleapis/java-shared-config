@@ -628,10 +628,10 @@
       </repositories>
     </profile>
     <profile>
-      <!-- Only run checkstyle plugin on Java 8+ (checkstyle artifact only supports Java 8+) -->
+      <!-- Only run checkstyle plugin on Java 11+ (checkstyle artifact only supports Java 11+) -->
       <id>checkstyle-tests</id>
       <activation>
-        <jdk>[1.8,)</jdk>
+        <jdk>[1.11,)</jdk>
       </activation>
       <build>
         <plugins>
