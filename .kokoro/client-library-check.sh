@@ -87,6 +87,7 @@ flatten-plugin)
       echo "No diff."
     else
       echo "There was a diff."
+    fi
     popd
     ;;
 *)
