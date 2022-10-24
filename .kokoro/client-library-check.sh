@@ -79,11 +79,11 @@ flatten-plugin)
     .kokoro/build.sh
     pushd google-cloud-*
     mvn dependency:list -f .flattened-pom.xml -DincludeScope=runtime -Dsort=true \
-        | grep '\[INFO]    .*:.*:.*:.*:.*' > .actual-flattened-dependencies-list.txt
+        | grep '\[INFO]    .*:.*:.*:.*:.*' |awk '{print $2}' > .actual-flattened-dependencies-list.txt
     echo "flattened-dependencies-list.txt:"
     cat .actual-flattened-dependencies-list.txt
     echo "---------"
-    diff "${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt >.diff.txt
+    diff "${scriptDir}/${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt >.diff.txt
     RETURN_CODE=$?
     popd
     ;;
