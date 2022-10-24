@@ -80,11 +80,13 @@ flatten-plugin)
     pushd google-cloud-*
     mvn dependency:list -f .flattened-pom.xml -DincludeScope=runtime -Dsort=true \
         | grep '\[INFO]    .*:.*:.*:.*:.*' |awk '{print $2}' > .actual-flattened-dependencies-list.txt
-    echo "flattened-dependencies-list.txt:"
-    cat .actual-flattened-dependencies-list.txt
-    echo "---------"
-    diff "${scriptDir}/${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt >.diff.txt
+    echo "Diff from the expected file (${EXPECTED_DEPENDENCIES_LIST}):"
+    diff "${scriptDir}/${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt
     RETURN_CODE=$?
+    if [ "${RETURN_CODE}" == 0 ]; then
+      echo "No diff."
+    else
+      echo "There was a diff."
     popd
     ;;
 *)
