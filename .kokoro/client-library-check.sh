@@ -53,9 +53,9 @@ echo "Version: ${VERSION}"
 # Check this BOM against a few java client libraries
 # java-bigquery
 if [ -z "${REPO_TAG}" ]; then
-  git clone "https://github.com/googleapis/${REPO}.git" --depth=1 --branch "${REPO_TAG}"
-else
   git clone "https://github.com/googleapis/${REPO}.git" --depth=1
+else
+  git clone "https://github.com/googleapis/${REPO}.git" --depth=1 --branch "${REPO_TAG}"
 fi
 
 pushd ${REPO}
