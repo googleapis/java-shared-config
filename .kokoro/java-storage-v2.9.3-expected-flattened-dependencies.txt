@@ -12,7 +12,7 @@ com.google.auto.value:auto-value-annotations:jar:1.10:compile
 com.google.cloud:google-cloud-core-http:jar:2.8.0:compile
 com.google.cloud:google-cloud-core:jar:2.8.0:compile
 com.google.code.findbugs:jsr305:jar:3.0.2:compile
-com.google.code.gson:gson:jar:2.9.1:compile
+com.google.code.gson:gson:jar:2.9.0:compile
 com.google.guava:failureaccess:jar:1.0.1:compile
 com.google.guava:guava:jar:31.1-jre:compile
 com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
@@ -25,7 +25,8 @@ com.google.j2objc:j2objc-annotations:jar:1.3:compile
 com.google.oauth-client:google-oauth-client:jar:1.34.1:compile
 com.google.protobuf:protobuf-java-util:jar:3.21.1:compile
 com.google.protobuf:protobuf-java:jar:3.21.1:compile
-io.grpc:grpc-context:jar:1.47.0:compileio.opencensus:opencensus-api:jar:0.31.1:compile
+io.grpc:grpc-context:jar:1.47.0:compile
+io.opencensus:opencensus-api:jar:0.31.1:compile
 io.opencensus:opencensus-contrib-http-util:jar:0.31.1:compile
 javax.annotation:javax.annotation-api:jar:1.3.2:compile
 org.checkerframework:checker-qual:jar:3.22.2:compile
