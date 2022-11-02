@@ -31,7 +31,7 @@
         "^org.jacoco:",
         "^org.codehaus.mojo:",
         "^org.sonatype.plugins:",
-        "^com.spotify.fmt:",
+        "^com.coveo:",
         "^com.google.cloud:google-cloud-shared-config"
       ],
       "semanticCommitType": "build",
