@@ -64,7 +64,7 @@
     <report.jxr.inherited>false</report.jxr.inherited>
     <skipITs>true</skipITs>
     <auto-value-annotation.version>1.10.1</auto-value-annotation.version>
-    <surefire.version>3.0.0-M7</surefire.version>
+    <surefire.version>3.0.0-M8</surefire.version>
     <docRoot>/java/docs/reference/</docRoot>
   </properties>
 
@@ -449,7 +449,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.4.2</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -638,7 +638,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.2.0</version>
+            <version>3.2.1</version>
             <dependencies>
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
