@@ -784,9 +784,9 @@
 
       <dependencies>
         <dependency>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter-api</artifactId>
-          <version>5.9.1</version>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+          <version>5.9.2</version>
           <scope>test</scope>
         </dependency>
 
@@ -834,14 +834,13 @@
                 <goals>
                   <goal>test</goal>
                 </goals>
-                <phase>test</phase>
+                <phase>integration-test</phase>
               </execution>
             </executions>
             <configuration>
               <buildArgs>
                 <buildArg>--no-fallback</buildArg>
                 <buildArg>--no-server</buildArg>
-                <buildArg>--verbose</buildArg>
               </buildArgs>
             </configuration>
           </plugin>
