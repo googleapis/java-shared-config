@@ -783,9 +783,9 @@
       <id>native</id>
       <dependencies>
         <dependency>
-          <groupId>org.graalvm.buildtools</groupId>
-          <artifactId>junit-platform-native</artifactId>
-          <version>0.9.20</version>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+          <version>5.9.2</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -794,14 +794,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.0.0</version>
-            <dependencies>
-              <dependency>
-                <groupId>org.junit.vintage</groupId>
-                <artifactId>junit-vintage-engine</artifactId>
-                <version>5.9.2</version>
-              </dependency>
-            </dependencies>
+            <version>${surefire.version}</version>
             <configuration>
               <!-- Include all tests during native image testing. -->
               <excludes combine.self="override" />
@@ -819,13 +812,6 @@
             <version>0.9.20</version>
             <extensions>true</extensions>
             <executions>
-              <execution>
-                <id>build-native</id>
-                <goals>
-                  <goal>build</goal>
-                </goals>
-                <phase>package</phase>
-              </execution>
               <execution>
                 <id>test-native</id>
                 <goals>
