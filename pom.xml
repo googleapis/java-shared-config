@@ -781,20 +781,29 @@
     <profile>
       <!-- This profile is used to enable GraalVM native image testing -->
       <id>native</id>
+
       <dependencies>
         <dependency>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
           <version>5.9.2</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
+
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${surefire.version}</version>
+            <dependencies>
+              <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>5.9.2</version>
+                <scope>test</scope>
+              </dependency>
+            </dependencies>
             <configuration>
               <!-- Include all tests during native image testing. -->
               <excludes combine.self="override" />
