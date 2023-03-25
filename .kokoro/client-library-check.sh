@@ -50,15 +50,40 @@ if [ -z "${VERSION}" ]; then
 fi
 echo "Version: ${VERSION}"
 
+function exists_in_list() {
+    LIST=$1
+    DELIMITER=$2
+    VALUE=$3
+    echo "$LIST" | tr "$DELIMITER" '\n' | grep -F -q -x "$VALUE"
+}
+
+LIBRARIES="java-bigquery
+  java-bigquerystorage
+  java-bigtable
+  java-datastore
+  java-firestore
+  java-logging
+  java-logging-logback
+  java-pubsub
+  java-pubsublite
+  java-spanner
+  java-spanner-jdbc
+  java-storage
+  java-storage-nio"
+
+if not exists_in_list "$LIBRARIES" " " "$REPO"; then
+    REPO="google-cloud-java/$REPO"
+fi
+
+echo "$REPO"
 # Check this BOM against a few java client libraries
-# java-bigquery
 if [ -z "${REPO_TAG}" ]; then
   git clone "https://github.com/googleapis/${REPO}.git" --depth=1
 else
   git clone "https://github.com/googleapis/${REPO}.git" --depth=1 --branch "${REPO_TAG}"
 fi
 
-pushd ${REPO}
+pushd "$REPO"
 
 # replace version
 xmllint --shell <(cat pom.xml) << EOF
