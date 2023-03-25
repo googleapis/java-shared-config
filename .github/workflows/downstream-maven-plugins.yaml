@@ -49,16 +49,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: graalvm/setup-graalvm@v1
-        with:
-          # When a new version of native-maven-plugin fails to run in a downstream
-          # library, it's likely to be an incompatibility with the GraalVM version.
-          # In that case, you need to upgrade the Docker container used in the
-          # tests in the downstream repositories (not just this value below).
-          # Example: https://github.com/googleapis/testing-infra-docker/pull/195
-          version: '22.3.1'
-          java-version: ${{matrix.java}}
-          components: 'native-image'
-          cache: 'maven'
+      with:
+        # When a new version of native-maven-plugin fails to run in a downstream
+        # library, it's likely to be an incompatibility with the GraalVM version.
+        # In that case, you need to upgrade the Docker container used in the
+        # tests in the downstream repositories (not just this value below).
+        # Example: https://github.com/googleapis/testing-infra-docker/pull/195
+        version: '22.3.1'
+        java-version: ${{matrix.java}}
+        components: 'native-image'
+        cache: 'maven'
     - run: java -version
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
