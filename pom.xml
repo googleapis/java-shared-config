@@ -417,7 +417,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <version>1.22</version>
+        <version>1.23</version>
         <executions>
           <execution>
             <id>java8</id>
@@ -636,7 +636,7 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>10.9.2</version>
+                <version>10.9.3</version>
               </dependency>
             </dependencies>
             <executions>
