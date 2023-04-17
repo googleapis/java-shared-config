@@ -781,6 +781,12 @@
           <artifactId>opentest4j</artifactId>
           <version>1.2.0</version>
         </dependency>
+        <dependency>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+          <version>5.9.2</version>
+          <scope>test</scope>
+        </dependency>
       </dependencies>
       <build>
         <plugins>
@@ -808,7 +814,7 @@
           <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
-            <version>0.9.20</version>
+            <version>0.9.21</version>
             <extensions>true</extensions>
             <executions>
               <execution>
