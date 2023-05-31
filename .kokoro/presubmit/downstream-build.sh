@@ -44,44 +44,13 @@ mkdir -p "${HOME}/.m2"
 cp settings.xml "${HOME}/.m2"
 
 ### Round 2
-#git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
-#pushd sdk-platform-java
-
-#### Round 3
-## Publish this repo's modules to local maven to make them available for downstream libraries
-#mvn -B -ntp install --projects '!gapic-generator-java' \
-#  -Dcheckstyle.skip -Dfmt.skip -DskipTests
-#
-## Read the shared dependencies version
-## Namespace (xmlns) prevents xmllint from specifying tag names in XPath
-#SHARED_DEPS_VERSION=$(sed -e 's/xmlns=".*"//' java-shared-dependencies/pom.xml | xmllint --xpath '/project/version/text()' -)
-#
-#if [ -z "${SHARED_DEPS_VERSION}" ]; then
-#  echo "Shared dependencies version is not found in pom.xml"
-#  exit 1
-#fi
-
-### Round 4
 # Update the shared-config version in google-cloud-jar-parent
 git clone "https://github.com/googleapis/google-cloud-java.git" --depth=1
 pushd google-cloud-java/google-cloud-pom-parent
 modify_shared_config
 popd
-#pushd google-cloud-java/google-cloud-jar-parent
-#xmllint --shell pom.xml <<EOF
-#setns x=http://maven.apache.org/POM/4.0.0
-#cd .//x:artifactId[text()="google-cloud-shared-dependencies"]
-#cd ../x:version
-#set ${SHARED_DEPS_VERSION}
-#save pom.xml
-#EOF
 
-#echo "Modifications to java-shared-dependencies:"
-#git diff
-#echo
-#popd
-
-### Round 5
+### Round 3
 # Run the updated java-shared-dependencies BOM against google-cloud-java
 pushd google-cloud-java
 source ./.kokoro/common.sh
