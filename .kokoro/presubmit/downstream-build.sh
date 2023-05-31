@@ -64,8 +64,10 @@ fi
 ### Round 4
 # Update the shared-config and shared-dependencies version in google-cloud-jar-parent
 git clone "https://github.com/googleapis/google-cloud-java.git" --depth=1
-pushd google-cloud-java/google-cloud-jar-parent
+pushd google-cloud-java/google-cloud-pom-parent
 modify_shared_config
+popd
+pushd google-cloud-java/google-cloud-jar-parent
 xmllint --shell pom.xml <<EOF
 setns x=http://maven.apache.org/POM/4.0.0
 cd .//x:artifactId[text()="google-cloud-shared-dependencies"]
