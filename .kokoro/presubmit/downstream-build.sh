@@ -44,8 +44,8 @@ mkdir -p "${HOME}/.m2"
 cp settings.xml "${HOME}/.m2"
 
 ### Round 2
-git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
-pushd sdk-platform-java
+#git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
+#pushd sdk-platform-java
 
 #### Round 3
 ## Publish this repo's modules to local maven to make them available for downstream libraries
