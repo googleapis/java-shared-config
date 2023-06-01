@@ -51,7 +51,7 @@ modify_shared_config
 popd
 
 ### Round 3
-# Run the updated java-shared-dependencies BOM against google-cloud-java
+# Run the updated java-shared-config against google-cloud-java
 pushd google-cloud-java
 source ./.kokoro/common.sh
 RETURN_CODE=0
