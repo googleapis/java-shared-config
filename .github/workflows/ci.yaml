@@ -91,5 +91,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
       - run:  gcloud container images describe gcr.io/cloud-devrel-kokoro-resources/graalvm:22.3.2 > /dev/null ; echo $?
