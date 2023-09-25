@@ -27,7 +27,7 @@ RUN gu install native-image && \
 ENV PATH $PATH:/usr/local/lib/maven/bin
 
 # Install gcloud SDK
-COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
+# COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
 RUN yum install -y google-cloud-sdk
 
 # Adding the package path to local
