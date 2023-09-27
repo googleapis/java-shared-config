@@ -55,6 +55,10 @@ steps:
           "gcr.io/cloud-devrel-public-resources/graalvm_b:${_JAVA_SHARED_CONFIG_VERSION}",
       ]
     waitFor: [ "graalvm-b-build" ]
+
+# The docker images will be published to GCP projects cloud-devrel-kokoro-resources and cloud-devrel-public-resources
+# following convention in https://github.com/googleapis/testing-infra-docker. While the former will be used for Kokoro
+# jobs in the downstream repos, the latter makes the docker images publicly available for testing.
 images:
   - gcr.io/$PROJECT_ID/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}
   - gcr.io/cloud-devrel-public-resources/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}
