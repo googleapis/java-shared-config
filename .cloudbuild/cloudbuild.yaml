@@ -21,13 +21,12 @@ steps:
   # GraalVM A build
   - name: gcr.io/cloud-builders/docker
     args: ["build", "-t", "gcr.io/$PROJECT_ID/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}", "--file", "${_GRAALVM_A}.Dockerfile", "."]
-    env:
-    dir: .kokoro/docker
+    dir: .cloudbuild
     id: graalvm-a-build
     waitFor: ["-"]
   - name: gcr.io/gcp-runtimes/structure_test
     args:
-      ["-i", "gcr.io/$PROJECT_ID/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}", "--config", ".kokoro/docker/${_GRAALVM_A}.yaml", "-v"]
+      ["-i", "gcr.io/$PROJECT_ID/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}", "--config", ".cloudbuild/${_GRAALVM_A}.yaml", "-v"]
     waitFor: ["graalvm-a-build"]
   - name: gcr.io/cloud-builders/docker
     args:
@@ -41,12 +40,12 @@ steps:
   # GraalVM B build
   - name: gcr.io/cloud-builders/docker
     args: [ "build", "-t", "gcr.io/$PROJECT_ID/graalvm_b:${_JAVA_SHARED_CONFIG_VERSION}", "--file", "${_GRAALVM_B}.Dockerfile", "." ]
-    dir: .kokoro/docker
+    dir: .cloudbuild
     id: graalvm-b-build
     waitFor: [ "-" ]
   - name: gcr.io/gcp-runtimes/structure_test
     args:
-      [ "-i", "gcr.io/$PROJECT_ID/graalvm_b:${_JAVA_SHARED_CONFIG_VERSION}", "--config", ".kokoro/docker/${_GRAALVM_B}.yaml", "-v" ]
+      [ "-i", "gcr.io/$PROJECT_ID/graalvm_b:${_JAVA_SHARED_CONFIG_VERSION}", "--config", ".cloudbuild/${_GRAALVM_B}.yaml", "-v" ]
     waitFor: [ "graalvm-b-build" ]
   - name: gcr.io/cloud-builders/docker
     args:
