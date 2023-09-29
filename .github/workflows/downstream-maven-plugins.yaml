@@ -17,6 +17,7 @@ jobs:
         java: [8, 11]
         repo:
         - java-bigquery
+        - java-bigtable
         job-type:
         - test  # maven-surefire-plugin
         - lint  # fmt-maven-plugin and google-java-format
