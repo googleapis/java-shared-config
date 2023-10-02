@@ -23,7 +23,7 @@ gitCommitMessage=$(git log -1 "$(git rev-parse --short "$KOKORO_GIT_COMMIT")" | 
 if [[ "${branchName}" == *"release-please--branches--main"* ]] && [[ ! $gitCommitMessage =~ "SNAPSHOT" ]]; then
 
   for name in "${imageNames[@]}"; do
-    fullContainerName="gcr.io/gcloud-devrel-public-resources/${name}:${javaSharedConfigVersion}"
+    fullContainerName="gcr.io/cloud-devrel-public-resources/${name}:${javaSharedConfigVersion}"
     echo "Verifying presence of ${fullContainerName}"
     gcloud container images describe "${fullContainerName}" > /dev/null; exit_status=$?
     if [[ $exit_status = 0 ]]; then
