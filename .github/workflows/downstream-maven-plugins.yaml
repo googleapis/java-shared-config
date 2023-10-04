@@ -49,4 +49,4 @@ jobs:
     - run: java -version
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
-    - run: .kokoro/javadoc-generation-with-doclet.sh ${{matrix.repo}}
+    - run: .kokoro/client-library-check-javadoc-with-doclet.sh ${{matrix.repo}}
