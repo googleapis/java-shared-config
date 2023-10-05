@@ -13,9 +13,10 @@ function fetch_image_names() {
   echo "$imageNames"
 }
 
-javaSharedConfigVersion=1.5.7 # {x-version-update:java-shared-config:current}
-imageNames=$(fetch_image_names)
+# Fetch the java-shared-config version in source of the current commit.
+javaSharedConfigVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 
+imageNames=$(fetch_image_names)
 branchName=$(git name-rev "$KOKORO_GIT_COMMIT" | sed 's/.* //')
 gitCommitMessage=$(git log -1 "$(git rev-parse --short "$KOKORO_GIT_COMMIT")" | grep "chore(main): release *")
 
