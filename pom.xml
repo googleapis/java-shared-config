@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.5.9-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.5.8</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Google Cloud</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -541,12 +541,7 @@
         <artifactId>auto-value-annotations</artifactId>
         <version>${auto-value.version}</version>
       </dependency>
-
-    <!--
-    java-shared-config comes first in the release train. Defining the graal-sdk
-    version here will allow us manage the dependency from a single location
-    instead of needing to define it multiple repos (e.g gax, java-spanner)
-    -->
+      
       <dependency>
         <groupId>org.graalvm.sdk</groupId>
         <artifactId>graal-sdk</artifactId>
