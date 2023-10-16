@@ -3,6 +3,7 @@
 # Script to verify the presence of GraalVM docker test images tagged with the latest java-shared-config version.
 
 set -eo pipefail
+set -x
 
 function fetch_image_names() {
   imageNames="$(grep "  - gcr.io/cloud-devrel-public-resources/" .cloudbuild/cloudbuild.yaml | cut -d "/" -f 3 | cut -d ":" -f 1)"
@@ -28,6 +29,7 @@ if [[ $exit_status = 0 ]]; then
   echo "Success. Found $fullContainerName."
   exit 0
 else
+  echo "Failed. Unable to find $fullContainerName."
   exit $exit_status
 fi
 
