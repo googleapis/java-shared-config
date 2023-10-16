@@ -7,8 +7,6 @@ function fetch_image_names() {
   export imageNames
   echo "$imageNames"
 }
-echo "Check if git is installed:"
-which git
 
 git config --global --add safe.directory /tmpfs/src/github/java-shared-config
 
@@ -22,10 +20,6 @@ javaSharedConfigVersion="$(mvn help:evaluate -Dexpression=project.version -q -Df
 
 branchName=$(git name-rev "${KOKORO_GIT_COMMIT}" | sed 's/.* //')
 gitCommitMessage=$(git log -1 "$(git rev-parse --short "${KOKORO_GIT_COMMIT}")" | grep "chore(main): release *")
-
-echo "${KOKORO_GIT_COMMIT}"
-echo "${branchName}"
-echo "${gitCommitMessage}"
 
 # GraalVM docker images are not tagged with SNAPSHOT versions.
 if [[ "${branchName}" == *"release-please--branches--main"* ]] && [[ ! $gitCommitMessage =~ "SNAPSHOT" ]]; then
