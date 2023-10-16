@@ -20,7 +20,7 @@ cd ${scriptDir}/.. || exit
 # Fetch the java-shared-config version in source of the current commit.
 javaSharedConfigVersion="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
 
-branchName=$(git name-rev "${KOKORO_GIT_COMMIT}" -v | sed 's/.* //')
+branchName=$(git name-rev "${KOKORO_GIT_COMMIT}" | sed 's/.* //')
 gitCommitMessage=$(git log -1 "$(git rev-parse --short "${KOKORO_GIT_COMMIT}")" | grep "chore(main): release *")
 
 echo "${KOKORO_GIT_COMMIT}"
