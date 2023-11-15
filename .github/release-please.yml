@@ -1,5 +1,6 @@
 releaseType: java-yoshi
 handleGHRelease: true
+extraFiles: [".cloudbuild/cloudbuild.yaml", ".cloudbuild/cloudbuild-test.yaml", ".kokoro/presubmit/graalvm-native-a.cfg", ".kokoro/presubmit/graalvm-native-b.cfg"]
 branches:
 - bumpMinorPreMajor: true
   handleGHRelease: true
