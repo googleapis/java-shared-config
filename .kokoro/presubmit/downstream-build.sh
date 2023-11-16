@@ -14,7 +14,7 @@
 # limitations under the License.
 
 set -eo pipefail
-
+set x
 
 function modify_shared_config() {
   xmllint --shell pom.xml <<EOF
