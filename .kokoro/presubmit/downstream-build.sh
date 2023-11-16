@@ -36,10 +36,8 @@ fi
 scriptDir=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
 ## cd to the parent directory, i.e. the root of the git repo
 cd "${scriptDir}/../.."
-pushd java-shared-config
 mvn -B -ntp install -Dcheckstyle.skip -Dfmt.skip -DskipTests
-SHARED_CONFIG_VERSION=$(sed -e 's/xmlns=".*"//' pom.xml | xmllint --xpath '/project/version/text()' -)
-popd
+SHARED_CONFIG_VERSION=$(sed -e 's/xmlns=".*"//' java-shared-config/pom.xml | xmllint --xpath '/project/version/text()' -)
 
 # Use GCP Maven Mirror
 mkdir -p "${HOME}/.m2"
