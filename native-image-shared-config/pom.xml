@@ -7,7 +7,7 @@
   <artifactId>native-image-shared-config</artifactId>
   <packaging>pom</packaging>
   <version>1.6.2-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
-  <name>Google Cloud</name>
+  <name>Native Image Shared Config</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
     Native Image build configuration for Google Cloud Java libraries.
