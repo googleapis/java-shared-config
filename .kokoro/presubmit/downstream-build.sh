@@ -33,13 +33,13 @@ scriptDir=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
 ## cd to the parent directory, i.e. the root of the git repo
 cd "${scriptDir}/../.."
 mvn -B -ntp install -Dcheckstyle.skip -Dfmt.skip -DskipTests
-SHARED_CONFIG_VERSION=$(sed -e 's/xmlns=".*"//' pom.xml | xmllint --xpath '/project/version/text()' -)
+SHARED_CONFIG_VERSION=$(sed -e 's/xmlns=".*"//' java-shared-config/pom.xml | xmllint --xpath '/project/version/text()' -)
 
 # Use GCP Maven Mirror
 mkdir -p "${HOME}/.m2"
 cp settings.xml "${HOME}/.m2"
 
-## Round 2
+### Round 2
 git clone "https://github.com/googleapis/sdk-platform-java" --depth=1
 
 # Update the shared-config version in showcase
