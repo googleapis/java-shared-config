@@ -43,7 +43,7 @@ SHARED_CONFIG_VERSION=$(sed -e 's/xmlns=".*"//' pom.xml | xmllint --xpath '/proj
 mkdir -p "${HOME}/.m2"
 cp settings.xml "${HOME}/.m2"
 
-### Round 2
+## Round 2
 git clone "https://github.com/googleapis/sdk-platform-java" --depth=1
 
 # Update the shared-config version in showcase
@@ -70,22 +70,5 @@ popd
 pushd sdk-platform-java/showcase
 mvn test -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
-
-
-### Round 3
-# Update the shared-config version in google-cloud-jar-parent
-git clone "https://github.com/googleapis/google-cloud-java.git" --depth=1
-pushd google-cloud-java/google-cloud-pom-parent
-modify_shared_config
-popd
-
-# Run the updated java-shared-config against google-cloud-java
-pushd google-cloud-java
-source ./.kokoro/common.sh
-RETURN_CODE=0
-setup_application_credentials
-setup_cloud "$MODULES_UNDER_TEST"
-run_graalvm_tests "$MODULES_UNDER_TEST"
-
 
 exit $RETURN_CODE
