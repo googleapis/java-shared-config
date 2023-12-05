@@ -27,11 +27,6 @@ function modify_shared_config() {
 EOF
 }
 
-if [ -z "${MODULES_UNDER_TEST}" ]; then
-  echo "MODULES_UNDER_TEST must be set to run downstream-build.sh"
-  exit 1
-fi
-
 ### Round 1
 ## Get the directory of the build script and install java-shared-config
 scriptDir=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
