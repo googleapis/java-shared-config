@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.7.0](https://github.com/googleapis/java-shared-config/compare/v1.6.1...v1.7.0) (2023-12-04)
+
+
+### Features
+
+* Separate native-image-shared-config into its own module ([#712](https://github.com/googleapis/java-shared-config/issues/712)) ([567fecb](https://github.com/googleapis/java-shared-config/commit/567fecb2fd80bd6e2fe509e4c2a97685f35e2b84))
+
+## [1.6.1](https://github.com/googleapis/java-shared-config/compare/v1.6.0...v1.6.1) (2023-10-31)
+
+
+### Dependencies
+
+* Update actions/checkout digest to b4ffde6 ([#696](https://github.com/googleapis/java-shared-config/issues/696)) ([6d69223](https://github.com/googleapis/java-shared-config/commit/6d692231d80049b7b88f24c1c6a0fe8eaa19c76f))
+* Update dependency com.puppycrawl.tools:checkstyle to v10.12.4 ([#665](https://github.com/googleapis/java-shared-config/issues/665)) ([6018b84](https://github.com/googleapis/java-shared-config/commit/6018b84b8da88d5022d064c5d950cbacbf3deab2))
+* Update graal-sdk to 22.3.3 ([#703](https://github.com/googleapis/java-shared-config/issues/703)) ([05c3057](https://github.com/googleapis/java-shared-config/commit/05c30571d61bba3e232584bdb5e941519e32f68a))
+
+## [1.6.0](https://github.com/googleapis/java-shared-config/compare/v1.5.8...v1.6.0) (2023-10-17)
+
+
+### Features
+
+* Add graal-sdk dependency management to java-shared-config ([#683](https://github.com/googleapis/java-shared-config/issues/683)) ([5cd1d84](https://github.com/googleapis/java-shared-config/commit/5cd1d84bf2d68dbe8f9fa7e02d9065082bd56726))
+
 ## [1.5.8](https://github.com/googleapis/java-shared-config/compare/v1.5.7...v1.5.8) (2023-10-05)
 
 
