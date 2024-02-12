@@ -85,6 +85,7 @@ pushd sdk-platform-java
 SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
 pushd sdk-platform-java-config
 replace_java_shared_config_version
+mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
 
 # Check this BOM against a few java client libraries
