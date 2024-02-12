@@ -21,6 +21,35 @@ set -eo pipefail
 # Display commands being run.
 set -x
 
+function get_version_from_versions_txt() {
+  versions=$1
+  key=$2
+  version=$(grep "$key:" "${versions}" | cut -d: -f1) # 1st field is current
+  echo "${version}"
+}
+
+function replace_java_shared_config_version() {
+  # replace version
+  xmllint --shell <(cat pom.xml) << EOF
+  setns x=http://maven.apache.org/POM/4.0.0
+  cd .//x:artifactId[text()="google-cloud-shared-config"]
+  cd ../x:version
+  set ${JAVA_SHARED_CONFIG_VERSION}
+  save pom.xml
+EOF
+}
+
+function replace_sdk_platform_java_config_version() {
+  # replace version
+  xmllint --shell <(cat pom.xml) << EOF
+  setns x=http://maven.apache.org/POM/4.0.0
+  cd .//x:artifactId[text()="sdk-platform-java-config"]
+  cd ../x:version
+  set ${SDK_PLATFORM_JAVA_CONFIG_VERSION}
+  save pom.xml
+EOF
+}
+
 if [[ $# -ne 2 ]];
 then
   echo "Usage: $0 <repo-name> <job-type>"
@@ -42,13 +71,21 @@ mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=tr
 # Read the current version of this BOM in the POM. Example version: '0.116.1-alpha-SNAPSHOT'
 VERSION_POM=java-shared-config/pom.xml
 # Namespace (xmlns) prevents xmllint from specifying tag names in XPath
-VERSION=`sed -e 's/xmlns=".*"//' ${VERSION_POM} | xmllint --xpath '/project/version/text()' -`
+JAVA_SHARED_CONFIG_VERSION=`sed -e 's/xmlns=".*"//' ${VERSION_POM} | xmllint --xpath '/project/version/text()' -`
 
-if [ -z "${VERSION}" ]; then
+if [ -z "${JAVA_SHARED_CONFIG_VERSION}" ]; then
   echo "Version is not found in ${VERSION_POM}"
   exit 1
 fi
-echo "Version: ${VERSION}"
+echo "Version: ${JAVA_SHARED_CONFIG_VERSION}"
+
+# Update java-shared-config in sdk-platform-java-config
+git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
+pushd sdk-platform-java
+SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
+pushd sdk-platform-java-config
+replace_java_shared_config_version
+popd
 
 # Check this BOM against a few java client libraries
 # java-bigquery
@@ -60,14 +97,12 @@ fi
 
 pushd ${REPO}
 
-# replace version
-xmllint --shell <(cat pom.xml) << EOF
-setns x=http://maven.apache.org/POM/4.0.0
-cd .//x:artifactId[text()="google-cloud-shared-config"]
-cd ../x:version
-set ${VERSION}
-save pom.xml
-EOF
+# Replace sdk-plaform-java-config version in java-spanner and java-pubsub. 
+if [ "$REPO" == "java-spanner" ] || [ "$REPO" == "java-pubsub" ]; then
+  replace_sdk_platform_java_config_version
+else
+  replace_java_shared_config_version
+fi
 
 case ${JOB_TYPE} in
 dependencies)
