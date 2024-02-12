@@ -60,6 +60,11 @@ fi
 
 pushd ${REPO}
 
+# print the original pom.xml for debugging purposes
+echo "Original pom.xml:"
+cat pom.xml
+echo "END OF original pom.xml"
+
 # replace version
 xmllint --shell <(cat pom.xml) << EOF
 setns x=http://maven.apache.org/POM/4.0.0
