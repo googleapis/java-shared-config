@@ -21,10 +21,17 @@ set -eo pipefail
 # Display commands being run.
 set -x
 
-function get_version_from_versions_txt() {
+function get_current_version_from_versions_txt() {
   versions=$1
   key=$2
   version=$(grep "$key:" "${versions}" | cut -d: -f3) # 3rd field is current
+  echo "${version}"
+}
+
+function get_released_version_from_versions_txt() {
+  versions=$1
+  key=$2
+  version=$(grep "$key:" "${versions}" | cut -d: -f2) # 2nd field is release
   echo "${version}"
 }
 
@@ -35,6 +42,16 @@ function replace_java_shared_config_version() {
   cd .//x:artifactId[text()="google-cloud-shared-config"]
   cd ../x:version
   set ${JAVA_SHARED_CONFIG_VERSION}
+  save pom.xml
+EOF
+}
+
+function use_released_java_shared_dependencies_version() {
+  # replace version
+  xmllint --shell <(cat pom.xml) << EOF
+  setns x=http://maven.apache.org/POM/4.0.0
+  cd .//x:properties/x:google-cloud-shared-dependencies.version
+  set ${RELEASED_SHARED_DEPENDENCIES_VERSION}
   save pom.xml
 EOF
 }
@@ -82,9 +99,13 @@ echo "Version: ${JAVA_SHARED_CONFIG_VERSION}"
 # Update java-shared-config in sdk-platform-java-config
 git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
 pushd sdk-platform-java
-SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
+SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_current_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
+RELEASED_SHARED_DEPENDENCIES_VERSION=$(get_released_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
 pushd sdk-platform-java-config
+
+# Only update java-shared-config but keep java-shared-dependencies at the release version
 replace_java_shared_config_version
+use_released_java_shared_dependencies_version
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
 
