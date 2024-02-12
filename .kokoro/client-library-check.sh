@@ -24,7 +24,7 @@ set -x
 function get_version_from_versions_txt() {
   versions=$1
   key=$2
-  version=$(grep "$key:" "${versions}" | cut -d: -f1) # 1st field is current
+  version=$(grep "$key:" "${versions}" | cut -d: -f3) # 3rd field is current
   echo "${version}"
 }
 
@@ -97,7 +97,7 @@ fi
 
 pushd ${REPO}
 
-# Replace sdk-plaform-java-config version in java-spanner and java-pubsub. 
+# Replace sdk-plaform-java-config version in java-spanner and java-pubsub.
 if [ "$REPO" == "java-spanner" ] || [ "$REPO" == "java-pubsub" ]; then
   replace_sdk_platform_java_config_version
 else
