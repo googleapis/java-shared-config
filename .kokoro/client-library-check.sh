@@ -106,7 +106,7 @@ SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_current_version_from_versions_txt version
 RELEASED_SHARED_DEPENDENCIES_VERSION=$(get_released_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
 pushd sdk-platform-java-config
 
-# Only update java-shared-config but keep java-shared-dependencies at the release version
+# Use released version of google-cloud-shared-dependencies to avoid verifying SNAPSHOT changes.
 replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
@@ -122,7 +122,8 @@ fi
 
 pushd ${REPO}
 
-# Replace sdk-plaform-java-config version in java-spanner and java-pubsub.
+# TODO(#748): Replace the version of sdk-platform-java-config for all libraries. This logic will no longer
+#  be needed after the rest of the handwritten libraries are migrated to use this artifact.
 if [ "$REPO" == "java-spanner" ] || [ "$REPO" == "java-pubsub" ]; then
   replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 else
