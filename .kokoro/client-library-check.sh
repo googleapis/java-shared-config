@@ -130,11 +130,6 @@ else
   replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 fi
 
-# print the updated pom.xml for debugging purposes
-echo "Updated pom.xml:"
-cat pom.xml
-echo "END OF pom.xml"
-
 case ${JOB_TYPE} in
 dependencies)
     .kokoro/dependencies.sh
