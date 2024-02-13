@@ -36,33 +36,36 @@ function get_released_version_from_versions_txt() {
 }
 
 function replace_java_shared_config_version() {
+  version=$1
   # replace version
   xmllint --shell <(cat pom.xml) << EOF
   setns x=http://maven.apache.org/POM/4.0.0
   cd .//x:artifactId[text()="google-cloud-shared-config"]
   cd ../x:version
-  set ${JAVA_SHARED_CONFIG_VERSION}
+  set ${version}
   save pom.xml
 EOF
 }
 
-function use_released_java_shared_dependencies_version() {
+function replace_java_shared_dependencies_version() {
+  version=$1
   # replace version
   xmllint --shell <(cat pom.xml) << EOF
   setns x=http://maven.apache.org/POM/4.0.0
   cd .//x:properties/x:google-cloud-shared-dependencies.version
-  set ${RELEASED_SHARED_DEPENDENCIES_VERSION}
+  set ${version}
   save pom.xml
 EOF
 }
 
 function replace_sdk_platform_java_config_version() {
+  version=$1
   # replace version
   xmllint --shell <(cat pom.xml) << EOF
   setns x=http://maven.apache.org/POM/4.0.0
   cd .//x:artifactId[text()="sdk-platform-java-config"]
   cd ../x:version
-  set ${SDK_PLATFORM_JAVA_CONFIG_VERSION}
+  set ${version}
   save pom.xml
 EOF
 }
@@ -104,8 +107,8 @@ RELEASED_SHARED_DEPENDENCIES_VERSION=$(get_released_version_from_versions_txt ve
 pushd sdk-platform-java-config
 
 # Only update java-shared-config but keep java-shared-dependencies at the release version
-replace_java_shared_config_version
-use_released_java_shared_dependencies_version
+replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
+replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
 
@@ -121,9 +124,9 @@ pushd ${REPO}
 
 # Replace sdk-plaform-java-config version in java-spanner and java-pubsub.
 if [ "$REPO" == "java-spanner" ] || [ "$REPO" == "java-pubsub" ]; then
-  replace_sdk_platform_java_config_version
+  replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 else
-  replace_java_shared_config_version
+  replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 fi
 
 case ${JOB_TYPE} in
