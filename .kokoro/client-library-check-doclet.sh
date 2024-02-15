@@ -69,7 +69,7 @@ function replace_sdk_platform_java_config_version() {
   save pom.xml
 EOF
 }
-
+REPO=$1
 # Get the directory of the build script
 scriptDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 ## cd to the parent directory, i.e. the root of the git repo
