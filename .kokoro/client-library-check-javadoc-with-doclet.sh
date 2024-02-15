@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2021 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -70,20 +70,13 @@ function replace_sdk_platform_java_config_version() {
 EOF
 }
 
-if [[ $# -ne 2 ]];
-then
-  echo "Usage: $0 <repo-name> <job-type>"
-  echo "where repo-name is java-XXX and check-type is dependencies, lint, or clirr"
-  exit 1
-fi
-REPO=$1
-# build.sh uses this environment variable
-export JOB_TYPE=$2
-
 ## Get the directory of the build script
 scriptDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 ## cd to the parent directory, i.e. the root of the git repo
 cd ${scriptDir}/..
+
+# Make artifacts available for 'mvn validate' at the bottom
+mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 
 ## Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
 git clone https://github.com/googleapis/java-docfx-doclet.git
@@ -95,9 +88,6 @@ mvn package -Dmaven.test.skip=true
 cd ../../../
 docletPath=$(realpath "java-docfx-doclet/third_party/docfx-doclet-143274/target/docfx-doclet-1.0-SNAPSHOT-jar-with-dependencies.jar")
 echo "This is the doclet path: ${docletPath}"
-
-# Make artifacts available for 'mvn validate' at the bottom
-mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 
 # Read the current version of this BOM in the POM. Example version: '0.116.1-alpha-SNAPSHOT'
 VERSION_POM=java-shared-config/pom.xml
@@ -115,6 +105,8 @@ git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
 pushd sdk-platform-java
 SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_current_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
 RELEASED_SHARED_DEPENDENCIES_VERSION=$(get_released_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
+echo "This is the SDK_PLATFORM_JAVA_CONFIG_VERSION: ${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
+echo "This is the RELEASED_SHARED_DEPENDENCIES_VERSION: ${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 pushd sdk-platform-java-config
 
 # Use released version of google-cloud-shared-dependencies to avoid verifying SNAPSHOT changes.
@@ -123,16 +115,10 @@ replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
 
-# Check this BOM against a few java client libraries
-# java-bigquery
-if [ -z "${REPO_TAG}" ]; then
-  git clone "https://github.com/googleapis/${REPO}.git" --depth=1
-else
-  git clone "https://github.com/googleapis/${REPO}.git" --depth=1 --branch "${REPO_TAG}"
-fi
+# Check javadoc generation with the doclet
+git clone "https://github.com/googleapis/${REPO}.git" --depth=1
 
 pushd ${REPO}
-
 replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 
 mvn clean -B -ntp \
@@ -145,6 +131,7 @@ mvn clean -B -ntp \
     -Dflatten.skip=true \
     -Danimal.sniffer.skip=true \
     javadoc:aggregate
+
 RETURN_CODE=$?
     if [ "${RETURN_CODE}" == 0 ]; then
       echo "Javadocs generated successfully with doclet"
