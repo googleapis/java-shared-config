@@ -78,7 +78,7 @@ cd ${scriptDir}/..
 # Make artifacts available for 'mvn validate' at the bottom
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 
-## Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
+# Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
 git clone https://github.com/googleapis/java-docfx-doclet.git
 cd java-docfx-doclet/third_party/docfx-doclet-143274
 git checkout 1.9.0
