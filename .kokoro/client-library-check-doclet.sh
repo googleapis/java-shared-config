@@ -80,12 +80,12 @@ mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=tr
 
 # Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
 git clone https://github.com/googleapis/java-docfx-doclet.git
-cd java-docfx-doclet/third_party/docfx-doclet-143274
+pushd java-docfx-doclet/third_party/docfx-doclet-143274
 git checkout 1.9.0
 mvn package -Dmaven.test.skip=true
 
 # work from the root directory
-cd ../../../
+popd
 docletPath=$(realpath "java-docfx-doclet/third_party/docfx-doclet-143274/target/docfx-doclet-1.0-SNAPSHOT-jar-with-dependencies.jar")
 echo "This is the doclet path: ${docletPath}"
 
