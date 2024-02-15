@@ -133,8 +133,8 @@ mvn clean -B -ntp \
     javadoc:aggregate
 
 RETURN_CODE=$?
-    if [ "${RETURN_CODE}" == 0 ]; then
-      echo "Javadocs generated successfully with doclet"
-    else
-      echo "Javadoc generation FAILED with doclet"
-    fi
+if [ "${RETURN_CODE}" == 0 ]; then
+  echo "Javadocs generated successfully with doclet"
+else
+  echo "Javadoc generation FAILED with doclet"
+fi
