@@ -133,41 +133,21 @@ fi
 
 pushd ${REPO}
 
-# TODO(#748): Replace the version of sdk-platform-java-config for all libraries. This logic will no longer
-#  be needed after the rest of the handwritten libraries are migrated to use this artifact.
-if [ "$REPO" == "java-storage" ]; then
-  replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
-else
-  replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
-fi
+replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 
-case ${JOB_TYPE} in
-dependencies)
-    .kokoro/dependencies.sh
-    RETURN_CODE=$?
-    ;;
-flatten-plugin)
-    # This creates .flattened-pom.xml
-    .kokoro/build.sh
-    pushd google-cloud-*
-    mvn dependency:list -f .flattened-pom.xml -DincludeScope=runtime -Dsort=true \
-        | grep '\[INFO]    .*:.*:.*:.*:.*' |awk '{print $2}' > .actual-flattened-dependencies-list.txt
-    echo "Diff from the expected file (${EXPECTED_DEPENDENCIES_LIST}):"
-    diff "${scriptDir}/${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt
-    RETURN_CODE=$?
+mvn clean -B -ntp \
+    -P docFX \
+    -DdocletPath="${docletPath}" \
+    -Dclirr.skip=true \
+    -Denforcer.skip=true \
+    -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS \
+    -Dcheckstyle.skip=true \
+    -Dflatten.skip=true \
+    -Danimal.sniffer.skip=true \
+    javadoc:aggregate
+RETURN_CODE=$?
     if [ "${RETURN_CODE}" == 0 ]; then
-      echo "No diff."
+      echo "Javadocs generated successfully with doclet"
     else
-      echo "There was a diff."
+      echo "Javadoc generation FAILED with doclet"
     fi
-    popd
-    ;;
-*)
-    # This reads the JOB_TYPE environmental variable
-    .kokoro/build.sh
-    RETURN_CODE=$?
-    ;;
-esac
-
-echo "exiting with ${RETURN_CODE}"
-exit ${RETURN_CODE}
