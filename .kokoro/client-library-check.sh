@@ -85,17 +85,6 @@ scriptDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 ## cd to the parent directory, i.e. the root of the git repo
 cd ${scriptDir}/..
 
-## Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
-git clone https://github.com/googleapis/java-docfx-doclet.git
-cd java-docfx-doclet/third_party/docfx-doclet-143274
-git checkout 1.9.0
-mvn package -Dmaven.test.skip=true
-
-# work from the root directory
-cd ../../../
-docletPath=$(realpath "java-docfx-doclet/third_party/docfx-doclet-143274/target/docfx-doclet-1.0-SNAPSHOT-jar-with-dependencies.jar")
-echo "This is the doclet path: ${docletPath}"
-
 # Make artifacts available for 'mvn validate' at the bottom
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 
