@@ -123,6 +123,8 @@ fi
 
 pushd ${REPO}
 
+mvn help:effective-pom
+
 # Replace version of sdk-platform-java-config
 replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 
