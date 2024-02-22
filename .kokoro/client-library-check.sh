@@ -123,11 +123,11 @@ fi
 
 pushd ${REPO}
 
-mvn help:effective-pom
 
+git branch
 # Replace version of sdk-platform-java-config
 replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
-
+mvn help:effective-pom
 case ${JOB_TYPE} in
 dependencies)
     .kokoro/dependencies.sh
