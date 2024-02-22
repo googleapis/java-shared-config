@@ -122,13 +122,8 @@ fi
 
 pushd ${REPO}
 
-# TODO(#748): Replace the version of sdk-platform-java-config for all libraries. This logic will no longer
-#  be needed after the rest of the handwritten libraries are migrated to use this artifact.
-if [ "$REPO" == "java-storage" ]; then
-  replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
-else
-  replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
-fi
+# Replace version of sdk-platform-java-config
+replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 
 case ${JOB_TYPE} in
 dependencies)
