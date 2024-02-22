@@ -123,11 +123,14 @@ fi
 
 pushd ${REPO}
 
+# If using an older version of java-storage, continue replacing java-shared-config version otherwise replace
+# the version of sdk-platform-java-config.
+if [ "${REPO_TAG}" == "v2.9.3" ] && [ "${REPO}" == "java-storage" ]; then
+  replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
+else
+  replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
+fi
 
-git branch
-# Replace version of sdk-platform-java-config
-replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
-mvn help:effective-pom
 case ${JOB_TYPE} in
 dependencies)
     .kokoro/dependencies.sh
