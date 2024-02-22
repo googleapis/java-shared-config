@@ -132,7 +132,9 @@ dependencies)
     ;;
 flatten-plugin)
     # This creates .flattened-pom.xml
+    echo "Before running .kokoro/build.sh"
     .kokoro/build.sh
+    echo "After running .kokoro/build.sh"
     pushd google-cloud-*
     mvn dependency:list -f .flattened-pom.xml -DincludeScope=runtime -Dsort=true \
         | grep '\[INFO]    .*:.*:.*:.*:.*' |awk '{print $2}' > .actual-flattened-dependencies-list.txt
