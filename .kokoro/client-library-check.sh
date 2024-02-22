@@ -111,6 +111,7 @@ replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
+popd
 
 # Check this BOM against a few java client libraries
 # java-bigquery
