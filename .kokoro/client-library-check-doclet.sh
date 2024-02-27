@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2021 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -69,24 +69,25 @@ function replace_sdk_platform_java_config_version() {
   save pom.xml
 EOF
 }
-
-if [[ $# -ne 2 ]];
-then
-  echo "Usage: $0 <repo-name> <job-type>"
-  echo "where repo-name is java-XXX and check-type is dependencies, lint, or clirr"
-  exit 1
-fi
 REPO=$1
-# build.sh uses this environment variable
-export JOB_TYPE=$2
-
-## Get the directory of the build script
+# Get the directory of the build script
 scriptDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 ## cd to the parent directory, i.e. the root of the git repo
 cd ${scriptDir}/..
 
 # Make artifacts available for 'mvn validate' at the bottom
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
+
+# Get version of doclet used to generate Cloud RAD for javadoc testing with the doclet below
+git clone https://github.com/googleapis/java-docfx-doclet.git
+pushd java-docfx-doclet/third_party/docfx-doclet-143274
+git checkout 1.9.0
+mvn package -Dmaven.test.skip=true
+
+# work from the root directory
+popd
+docletPath=$(realpath "java-docfx-doclet/third_party/docfx-doclet-143274/target/docfx-doclet-1.0-SNAPSHOT-jar-with-dependencies.jar")
+echo "This is the doclet path: ${docletPath}"
 
 # Read the current version of this BOM in the POM. Example version: '0.116.1-alpha-SNAPSHOT'
 VERSION_POM=java-shared-config/pom.xml
@@ -104,6 +105,8 @@ git clone "https://github.com/googleapis/sdk-platform-java.git" --depth=1
 pushd sdk-platform-java
 SDK_PLATFORM_JAVA_CONFIG_VERSION=$(get_current_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
 RELEASED_SHARED_DEPENDENCIES_VERSION=$(get_released_version_from_versions_txt versions.txt "google-cloud-shared-dependencies")
+echo "This is the SDK_PLATFORM_JAVA_CONFIG_VERSION: ${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
+echo "This is the RELEASED_SHARED_DEPENDENCIES_VERSION: ${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 pushd sdk-platform-java-config
 
 # Use released version of google-cloud-shared-dependencies to avoid verifying SNAPSHOT changes.
@@ -111,55 +114,27 @@ replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
 popd
-popd
 
-# Check this BOM against a few java client libraries
-# java-bigquery
-if [ -z "${REPO_TAG}" ]; then
-  git clone "https://github.com/googleapis/${REPO}.git" --depth=1
-else
-  git clone "https://github.com/googleapis/${REPO}.git" --depth=1 --branch "${REPO_TAG}"
-fi
+# Check javadoc generation with the doclet
+git clone "https://github.com/googleapis/${REPO}.git" --depth=1
 
 pushd ${REPO}
+replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 
-# If using an older version of java-storage, continue replacing java-shared-config version otherwise replace
-# the version of sdk-platform-java-config.
-if [ "${REPO_TAG}" == "v2.9.3" ] && [ "${REPO}" == "java-storage" ]; then
-  replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
+mvn clean -B -ntp \
+    -P docFX \
+    -DdocletPath="${docletPath}" \
+    -Dclirr.skip=true \
+    -Denforcer.skip=true \
+    -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS \
+    -Dcheckstyle.skip=true \
+    -Dflatten.skip=true \
+    -Danimal.sniffer.skip=true \
+    javadoc:aggregate
+
+RETURN_CODE=$?
+if [ "${RETURN_CODE}" == 0 ]; then
+  echo "Javadocs generated successfully with doclet"
 else
-  replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
+  echo "Javadoc generation FAILED with doclet"
 fi
-
-case ${JOB_TYPE} in
-dependencies)
-    .kokoro/dependencies.sh
-    RETURN_CODE=$?
-    ;;
-flatten-plugin)
-    # This creates .flattened-pom.xml
-    echo "Before running .kokoro/build.sh"
-    .kokoro/build.sh
-    echo "After running .kokoro/build.sh"
-    pushd google-cloud-*
-    mvn dependency:list -f .flattened-pom.xml -DincludeScope=runtime -Dsort=true \
-        | grep '\[INFO]    .*:.*:.*:.*:.*' |awk '{print $2}' > .actual-flattened-dependencies-list.txt
-    echo "Diff from the expected file (${EXPECTED_DEPENDENCIES_LIST}):"
-    diff "${scriptDir}/${EXPECTED_DEPENDENCIES_LIST}" .actual-flattened-dependencies-list.txt
-    RETURN_CODE=$?
-    if [ "${RETURN_CODE}" == 0 ]; then
-      echo "No diff."
-    else
-      echo "There was a diff."
-    fi
-    popd
-    ;;
-*)
-    # This reads the JOB_TYPE environmental variable
-    .kokoro/build.sh
-    RETURN_CODE=$?
-    ;;
-esac
-
-echo "exiting with ${RETURN_CODE}"
-exit ${RETURN_CODE}
