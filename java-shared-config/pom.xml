@@ -575,6 +575,9 @@
         <outputpath>${project.build.directory}/docfx-yml</outputpath>
         <projectname>${project.artifactId}</projectname>
         <source>17</source>
+        <excludeclasses></excludeclasses>
+        <excludePackages></excludePackages>
+        <sourceFileExclude></sourceFileExclude>
       </properties>
       <build>
         <plugins>
