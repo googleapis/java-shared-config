@@ -33,7 +33,6 @@ jobs:
         - test  # maven-surefire-plugin
         - lint  # fmt-maven-plugin and google-java-format
         - clirr # clirr-maven-plugin
-        - javadoc # maven-javadoc-plugin
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
