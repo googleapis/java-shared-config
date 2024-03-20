@@ -14,16 +14,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [8, 11]
+        java: [8, 11, 17, 21]
         repo:
         - java-bigquery
         - java-bigtable
+        - java-storage
+        - java-storage-nio
+        - java-spanner
+        - java-spanner-jdbc
+        - java-pubsub
+        - java-pubsublite
+        - java-logging
+        - java-logging-logback
+        - java-firestore
+        - java-datastore
+        - java-bigquerystorage
         job-type:
         - test  # maven-surefire-plugin
         - lint  # fmt-maven-plugin and google-java-format
         - clirr # clirr-maven-plugin
-        - javadoc # maven-javadoc-plugin
-        - javadoc-with-doclet # test javadoc generation with doclet
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
@@ -39,6 +48,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        java: [17] # Run only on Java 17 as that's what c.g.c. generation uses
         repo:
         - java-bigtable
         - java-bigquery
@@ -53,13 +63,21 @@ jobs:
         - java-firestore
         - java-datastore
         - java-bigquerystorage
+        job-type:
+        - javadoc # maven-javadoc-plugin
+        - javadoc-with-doclet # test c.g.c. - specific documentation generation
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
       with:
         distribution: temurin
-        java-version: 17
+        java-version: ${{matrix.java}}
     - run: java -version
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
-    - run: .kokoro/client-library-check-doclet.sh ${{matrix.repo}}
+    - run: |  # Conditional logic based on job-type
+        if [[ ${{matrix.job-type}} == 'javadoc' ]] ; then
+          .kokoro/client-library-check.sh ${{matrix.repo}} ${{matrix.job-type}}
+        elif [[ ${{matrix.job-type}} == 'javadoc-with-doclet' ]] ; then
+          .kokoro/client-library-check-doclet.sh ${{matrix.repo}}
+        fi
