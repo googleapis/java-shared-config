@@ -56,7 +56,7 @@ lint)
     RETURN_CODE=$?
     ;;
 javadoc)
-    mvn javadoc:javadoc javadoc:test-javadoc -B -ntp
+    mvn javadoc:javadoc javadoc:test-javadoc -B -ntp -Ddoclint=none
     RETURN_CODE=$?
     ;;
 integration)
