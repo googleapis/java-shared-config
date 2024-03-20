@@ -56,6 +56,7 @@ lint)
     RETURN_CODE=$?
     ;;
 javadoc)
+    echo "Running javadoc generation test"
     mvn javadoc:javadoc javadoc:test-javadoc -B -ntp -Ddoclint=none
     RETURN_CODE=$?
     ;;
