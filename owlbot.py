@@ -28,12 +28,14 @@ java.common_templates(
         ".github/release-please.yml",
         ".github/workflows/auto-release.yaml",
         ".github/workflows/samples.yaml",
+        ".github/workflows/ci.yaml",
         "samples/*",
         "renovate.json",
         ".kokoro/presubmit/graalvm-native.cfg",
         ".kokoro/presubmit/graalvm-native-17.cfg",
         ".kokoro/presubmit/common.cfg",
         ".kokoro/requirements.txt",
-        ".kokoro/requirements.in"
+        ".kokoro/requirements.in",
+        ".kokoro/build.sh"
     ]
 )
