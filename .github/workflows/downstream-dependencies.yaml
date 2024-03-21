@@ -3,7 +3,7 @@ on:
     branches:
     - main
   pull_request:
-name: downstream
+name: downstream-dependencies
 jobs:
   dependencies:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
       with:
-        distribution: zulu
+        distribution: temurin
         java-version: ${{matrix.java}}
     - run: java -version
     - run: sudo apt-get update -y
@@ -34,7 +34,7 @@ jobs:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
       with:
-        distribution: zulu
+        distribution: temurin
         java-version: 11
     - run: java -version
     - run: sudo apt-get update -y

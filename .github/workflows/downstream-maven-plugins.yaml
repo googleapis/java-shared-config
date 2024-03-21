@@ -7,30 +7,79 @@ on:
 # Keeping this file separate as the dependencies check would use more
 # repositories than needed this downstream check for GraalVM native image and
 # other Maven plugins.
-name: downstream
+name: downstream-maven-plugins-check
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        java: [8, 11]
+        java: [17]
         repo:
         - java-bigquery
         - java-bigtable
+        - java-storage
+        - java-storage-nio
+        - java-spanner
+        - java-spanner-jdbc
+        - java-pubsub
+        - java-pubsublite
+        - java-logging
+        - java-logging-logback
+        - java-firestore
+        - java-datastore
+        - java-bigquerystorage
         job-type:
-        - test  # maven-surefire-plugin
         - lint  # fmt-maven-plugin and google-java-format
         - clirr # clirr-maven-plugin
-        - javadoc # maven-javadoc-plugin
-        - javadoc-with-doclet # test javadoc generation with doclet
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
       with:
-        distribution: zulu
+        distribution: temurin
         java-version: ${{matrix.java}}
     - run: java -version
+    - run: sudo apt-get update -y
+    - run: sudo apt-get install libxml2-utils
+    - run: .kokoro/client-library-check.sh ${{matrix.repo}} ${{matrix.job-type}}
+  downstream-java8:
+    # Building using Java 17 and run the tests with Java 8 runtime
+    name: "Unit test maven-plugins downstream with Java8"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo:
+        - java-bigquery
+        - java-bigtable
+        - java-storage
+        - java-storage-nio
+        - java-spanner
+        - java-spanner-jdbc
+        - java-pubsub
+        - java-pubsublite
+        - java-logging
+        - java-logging-logback
+        - java-firestore
+        - java-datastore
+        - java-bigquerystorage
+        job-type:
+        - test  # maven-surefire-plugin
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-java@v3
+      with:
+        java-version: 8
+        distribution: temurin
+    - name: "Set jvm system property environment variable for surefire plugin (unit tests)"
+      # Maven surefire plugin (unit tests) allows us to specify JVM to run the tests.
+      # https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html#jvm
+      run: echo "SUREFIRE_JVM_OPT=-Djvm=${JAVA_HOME}/bin/java" >> $GITHUB_ENV
+      shell: bash
+    - uses: actions/setup-java@v3
+      with:
+        java-version: 17
+        distribution: temurin
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
     - run: .kokoro/client-library-check.sh ${{matrix.repo}} ${{matrix.job-type}}
@@ -39,6 +88,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        java: [17] # Run only on Java 17 as that's what c.g.c. generation uses
         repo:
         - java-bigtable
         - java-bigquery
@@ -53,12 +103,14 @@ jobs:
         - java-firestore
         - java-datastore
         - java-bigquerystorage
+        job-type:
+        - javadoc-with-doclet # test c.g.c. - specific documentation generation
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     - uses: actions/setup-java@v4
       with:
         distribution: temurin
-        java-version: 17
+        java-version: ${{matrix.java}}
     - run: java -version
     - run: sudo apt-get update -y
     - run: sudo apt-get install libxml2-utils
