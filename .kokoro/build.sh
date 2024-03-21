@@ -55,6 +55,10 @@ lint)
     mvn com.coveo:fmt-maven-plugin:check -B -ntp
     RETURN_CODE=$?
     ;;
+javadoc)
+    mvn javadoc:javadoc javadoc:test-javadoc -B -ntp
+    RETURN_CODE=$?
+    ;;
 integration)
     mvn -B ${INTEGRATION_TEST_ARGS} \
       -ntp \
