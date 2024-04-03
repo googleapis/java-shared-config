@@ -15,9 +15,16 @@
   "packageRules": [
     {
       "packagePatterns": [
+        "^com.google.auto.value:"
+      ],
+      "rangeStrategy": "pin"
+    },
+    {
+      "packagePatterns": [
         "^com.google.guava:"
       ],
-      "versionScheme": "docker"
+      "versionScheme": "docker",
+      "rangeStrategy": "pin"
     },
     {
       "packagePatterns": [
