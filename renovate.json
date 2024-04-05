@@ -17,14 +17,14 @@
       "packagePatterns": [
         "^com.google.auto.value:"
       ],
-      "rangeStrategy": "pin"
+      "enabled": false
     },
     {
       "packagePatterns": [
         "^com.google.guava:"
       ],
       "versionScheme": "docker",
-      "rangeStrategy": "pin"
+      "enabled": false
     },
     {
       "packagePatterns": [
