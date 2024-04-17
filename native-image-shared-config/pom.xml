@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>native-image-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.7.6</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.7.8-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Native Image Shared Config</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -109,7 +109,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
-            <version>3.3.0</version>
+            <version>3.3.1</version>
             <executions>
               <execution>
                 <id>attach-sources</id>
@@ -138,7 +138,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.2.0</version>
+            <version>3.2.3</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
