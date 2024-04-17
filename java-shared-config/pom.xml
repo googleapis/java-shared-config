@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.7.6</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.7.7</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Google Cloud Shared Config</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -16,7 +16,7 @@
   <parent>
     <groupId>com.google.cloud</groupId>
     <artifactId>native-image-shared-config</artifactId>
-    <version>1.7.6</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+    <version>1.7.7</version><!-- {x-version-update:google-cloud-shared-config:current} -->
     <relativePath>../native-image-shared-config</relativePath>
   </parent>
 
@@ -94,7 +94,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
           <configuration>
             <archive>
               <addMavenDescriptor>true</addMavenDescriptor>
@@ -114,7 +114,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.12.1</version>
+          <version>3.13.0</version>
           <configuration>
             <source>1.8</source>
             <target>1.8</target>
@@ -135,7 +135,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.11</version>
+          <version>0.8.12</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -521,7 +521,7 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>10.14.1</version>
+                <version>10.15.0</version>
               </dependency>
             </dependencies>
             <executions>
