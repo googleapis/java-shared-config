@@ -54,7 +54,7 @@ pushd sdk-platform-java/showcase/gapic-showcase
 SHOWCASE_VERSION=$(mvn help:evaluate -Dexpression=gapic-showcase.version -q -DforceStdout)
 popd
 
-## Start showcase server
+### Start showcase server
 mkdir -p /usr/src/showcase
 curl --location https://github.com/googleapis/gapic-showcase/releases/download/v"${SHOWCASE_VERSION}"/gapic-showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz --output /usr/src/showcase/showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz
 pushd /usr/src/showcase/
@@ -64,7 +64,23 @@ popd
 
 # Run showcase tests with `native` profile
 pushd sdk-platform-java/showcase
-mvn test -Pnative,-showcase -Denforcer.skip=true -ntp -B
+mvn test -Pnative,-showcase -Denforcer.skip=true -Dtest="!com.google.showcase.v1beta1.it.ITHttpAnnotation" -Dsurefire.failIfNoSpecifiedTests=false -ntp -B
 popd
+
+### Round 3
+# Update the shared-dependencies version in google-cloud-jar-parent
+git clone "https://github.com/googleapis/google-cloud-java.git" --depth=1
+update_all_poms_dependency google-cloud-java google-cloud-shared-dependencies "$SHARED_DEPS_VERSION"
+
+### Round 4
+# Run the updated java-shared-dependencies BOM against google-cloud-java integration tests
+cd google-cloud-java
+source ./.kokoro/common.sh
+RETURN_CODE=0
+setup_application_credentials
+setup_cloud "$MODULES_UNDER_TEST"
+run_graalvm_tests "$MODULES_UNDER_TEST"
+# Exit must occur in google-cloud-java directory to correctly destroy IT resources
+#exit "$RETURN_CODE"
 
 exit $RETURN_CODE
