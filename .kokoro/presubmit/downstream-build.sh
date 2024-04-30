@@ -61,7 +61,7 @@ tar -xf showcase-*
 ./gapic-showcase run &
 popd
 
-# Run showcase tests with `native` profile
+# Run showcase tests with `native` profile. Skipping ITHttpAnnotation until https://github.com/googleapis/sdk-platform-java/issues/2695 is fixed.
 pushd sdk-platform-java/showcase
 mvn test -Dtest='!com.google.showcase.v1beta1.it.ITHttpAnnotation' -Dsurefire.failIfNoSpecifiedTests=false -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
