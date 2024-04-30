@@ -31,6 +31,19 @@ EOF
   popd || exit 1
 }
 
+# In the given directory ($1),
+#   find and update all pom.xmls' dependencies on the given artifact ($2) to the given version ($3)
+# ex: update_all_poms_dependency google-cloud-java google-cloud-shared-dependencies 1.2.3
+function update_all_poms_dependency {
+  pushd "$1" || exit 1
+  find_all_poms_with_versioned_dependency "$2"
+  for pom in $POMS; do
+    update_pom_dependency "$(dirname "$pom")" "$2" "$3"
+  done
+  git diff
+  popd || exit 1
+}
+
 function modify_shared_config() {
   xmllint --shell pom.xml <<EOF
   setns x=http://maven.apache.org/POM/4.0.0
