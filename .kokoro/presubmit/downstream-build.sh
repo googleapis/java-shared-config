@@ -16,6 +16,20 @@
 set -eo pipefail
 set -x
 
+# In the given directory ($1),
+#   update the pom.xml's dependency on the given artifact ($2) to the given version ($3)
+# ex: update_dependency google-cloud-java/google-cloud-jar-parent google-cloud-shared-dependencies 1.2.3
+function update_pom_dependency {
+  pushd "$1" || exit 1
+  xmllint --shell pom.xml &>/dev/null <<EOF
+setns x=http://maven.apache.org/POM/4.0.0
+cd .//x:artifactId[text()="$2"]
+cd ../x:version
+set $3
+save pom.xml
+EOF
+  popd || exit 1
+}
 
 function modify_shared_config() {
   xmllint --shell pom.xml <<EOF
