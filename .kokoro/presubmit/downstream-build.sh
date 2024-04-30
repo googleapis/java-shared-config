@@ -64,7 +64,7 @@ popd
 
 # Run showcase tests with `native` profile
 pushd sdk-platform-java/showcase
-mvn test -Pnative,-showcase -Denforcer.skip=true -Dtest="!com.google.showcase.v1beta1.it.ITHttpAnnotation" -Dsurefire.failIfNoSpecifiedTests=false -ntp -B
+mvn test -Dtest='!com.google.showcase.v1beta1.it.ITHttpAnnotation' -Dsurefire.failIfNoSpecifiedTests=false -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
 
 ### Round 3
