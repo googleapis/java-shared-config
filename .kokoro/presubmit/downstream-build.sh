@@ -31,6 +31,19 @@ EOF
   popd || exit 1
 }
 
+# Find all pom.xml files that declare a specific version for the given artifact ($1)
+function find_all_poms_with_versioned_dependency {
+  poms=($(find . -name pom.xml))
+  for pom in "${poms[@]}"; do
+    if xmllint --xpath "//*[local-name()='artifactId' and text()='$1']/following-sibling::*[local-name()='version']" "$pom" &>/dev/null; then
+      found+=("$pom")
+    fi
+  done
+  POMS=(${found[@]})
+  unset found
+  export POMS
+}
+
 # In the given directory ($1),
 #   find and update all pom.xmls' dependencies on the given artifact ($2) to the given version ($3)
 # ex: update_all_poms_dependency google-cloud-java google-cloud-shared-dependencies 1.2.3
