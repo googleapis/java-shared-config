@@ -16,7 +16,6 @@
 set -eo pipefail
 set -x
 
-
 function modify_shared_config() {
   xmllint --shell pom.xml <<EOF
   setns x=http://maven.apache.org/POM/4.0.0
@@ -54,7 +53,7 @@ pushd sdk-platform-java/showcase/gapic-showcase
 SHOWCASE_VERSION=$(mvn help:evaluate -Dexpression=gapic-showcase.version -q -DforceStdout)
 popd
 
-## Start showcase server
+### Start showcase server
 mkdir -p /usr/src/showcase
 curl --location https://github.com/googleapis/gapic-showcase/releases/download/v"${SHOWCASE_VERSION}"/gapic-showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz --output /usr/src/showcase/showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz
 pushd /usr/src/showcase/
@@ -62,9 +61,9 @@ tar -xf showcase-*
 ./gapic-showcase run &
 popd
 
-# Run showcase tests with `native` profile
+# Run showcase tests with `native` profile. Skipping ITHttpAnnotation until https://github.com/googleapis/sdk-platform-java/issues/2695 is fixed.
 pushd sdk-platform-java/showcase
-mvn test -Pnative,-showcase -Denforcer.skip=true -ntp -B
+mvn test -Dtest='!com.google.showcase.v1beta1.it.ITHttpAnnotation' -Dsurefire.failIfNoSpecifiedTests=false -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
 
 exit $RETURN_CODE

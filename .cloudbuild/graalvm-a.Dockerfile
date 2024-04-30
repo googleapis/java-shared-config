@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/graalvm/graalvm-ce:ol7-java11-22.3.3-b1
+FROM ghcr.io/graalvm/graalvm-community:21.0.2-ol7-20240116
 
-RUN gu install native-image && \
-    yum update -y && \
+RUN yum update -y && \
     yum install -y wget unzip git && \
     # Install maven
     wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip -O /tmp/maven.zip && \
