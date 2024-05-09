@@ -49,6 +49,8 @@ branchProtectionRules:
     - "build (11, java-bigtable, javadoc)"
     - "javadoc-with-doclet (java-bigtable)"
     - "cla/google"
+    - "graalvm-presubmit-shared-config-a"
+    - "graalvm-presubmit-shared-config-b"
 - pattern: java7
   # Can admins overwrite branch protection.
   # Defaults to `true`
