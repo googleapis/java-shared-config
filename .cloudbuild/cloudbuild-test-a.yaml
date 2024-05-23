@@ -20,7 +20,7 @@ steps:
   # GraalVM A build
   - name: gcr.io/cloud-builders/docker
     args: ["build", "-t", "gcr.io/cloud-devrel-public-resources/graalvm_a:${_JAVA_SHARED_CONFIG_VERSION}",
-           "-t", "gcr.io/cloud-devrel-public-resources/graalvm_b:infrastructure-public-image-$SHORT_SHA",
+           "-t", "gcr.io/cloud-devrel-public-resources/graalvm_a:infrastructure-public-image-$SHORT_SHA",
            "--file", "graalvm-a.Dockerfile", "."]
     dir: .cloudbuild
     id: graalvm-a-build
