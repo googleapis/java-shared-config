@@ -6,7 +6,7 @@
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-shared-config</artifactId>
   <packaging>pom</packaging>
-  <version>1.7.8-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+  <version>1.8.1</version><!-- {x-version-update:google-cloud-shared-config:current} -->
   <name>Google Cloud Shared Config</name>
   <url>https://github.com/googleapis/java-shared-config</url>
   <description>
@@ -16,7 +16,7 @@
   <parent>
     <groupId>com.google.cloud</groupId>
     <artifactId>native-image-shared-config</artifactId>
-    <version>1.7.8-SNAPSHOT</version><!-- {x-version-update:google-cloud-shared-config:current} -->
+    <version>1.8.1</version><!-- {x-version-update:google-cloud-shared-config:current} -->
     <relativePath>../native-image-shared-config</relativePath>
   </parent>
 
@@ -49,7 +49,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
@@ -61,7 +61,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
           <configuration>
             <!-- to get rid of the warning: [WARNING] Warning: killAfter is now deprecated. Do you need it ?
                  Please comment on MEXEC-6. see: method execute() in
@@ -94,7 +94,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.4.0</version>
+          <version>3.4.2</version>
           <configuration>
             <archive>
               <addMavenDescriptor>true</addMavenDescriptor>
@@ -160,7 +160,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -388,7 +388,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -456,7 +456,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.3.2</version>
+        <version>3.4.0</version>
         <configuration>
           <linkJavadoc>true</linkJavadoc>
         </configuration>
@@ -516,12 +516,12 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.3.1</version>
+            <version>3.4.0</version>
             <dependencies>
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
-                <version>10.15.0</version>
+                <version>10.17.0</version>
               </dependency>
             </dependencies>
             <executions>
