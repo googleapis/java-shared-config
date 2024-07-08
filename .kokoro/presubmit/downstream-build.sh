@@ -53,7 +53,7 @@ pushd sdk-platform-java/showcase/gapic-showcase
 SHOWCASE_VERSION=$(mvn help:evaluate -Dexpression=gapic-showcase.version -q -DforceStdout)
 popd
 
-### Start showcase server
+# Start showcase server
 mkdir -p /usr/src/showcase
 curl --location https://github.com/googleapis/gapic-showcase/releases/download/v"${SHOWCASE_VERSION}"/gapic-showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz --output /usr/src/showcase/showcase-"${SHOWCASE_VERSION}"-linux-amd64.tar.gz
 pushd /usr/src/showcase/
@@ -61,6 +61,7 @@ tar -xf showcase-*
 ./gapic-showcase run &
 popd
 
+# Run showcase tests with `native` profile
 pushd sdk-platform-java/showcase
 mvn test -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
