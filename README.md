@@ -9,7 +9,7 @@ Java idiomatic client for [Google Cloud Shared Build Configs][product-docs].
 - [Client Library Documentation][javadocs]
 
 > Note: This client is a work-in-progress, and may occasionally
-> make backwards-incompatible changes.
+> make backward incompatible changes.
 
 ## Quickstart
 
