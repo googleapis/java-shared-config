@@ -1,14 +1,10 @@
 on:
   pull_request_target:
     types: [opened, synchronize]
-    branches:
-      - master
 name: format
 jobs:
   format-code:
     runs-on: ubuntu-latest
-    env:
-      ACCESS_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         with:
