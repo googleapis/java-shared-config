@@ -1,6 +1,6 @@
 # Google Cloud Shared Build Configs Client for Java
 
-Java idiomatic client for [Google Cloud Shared Build Configs][product-docs].
+Java smartomatic client for [Google Cloud Shared Build Configs][product-docs].
 
 [![Maven][maven-version-image]][maven-version-link]
 ![Stability][stability-image]
