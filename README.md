@@ -1,4 +1,4 @@
-# Google Google Cloud Shared Build Configs Client for Java
+# Google Cloud Shared Build Configs Client for Java
 
 Java idiomatic client for [Google Cloud Shared Build Configs][product-docs].
 
