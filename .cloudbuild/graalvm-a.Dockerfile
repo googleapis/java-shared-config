@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/graalvm/graalvm-community:17.0.9-ol7
+FROM ghcr.io/graalvm/graalvm-community:22.0.2-ol7
 RUN gu install native-image && \
     yum update -y && \
     yum install -y wget unzip git && \
