@@ -64,6 +64,7 @@
     <native-maven-plugin.version>0.10.2</native-maven-plugin.version>
     <junit-vintage-engine.version>5.10.3</junit-vintage-engine.version>
     <opentest4j.version>1.3.0</opentest4j.version>
+    <ignoredDependencies>org.graalvm.sdk:nativeimage</ignoredDependencies>
   </properties>
 
   <dependencyManagement>
@@ -94,6 +95,13 @@
             <nexusUrl>https://google.oss.sonatype.org/</nexusUrl>
             <autoReleaseAfterClose>false</autoReleaseAfterClose>
             <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <configuration>
+            <ignoredDependencies>${ignoredDependencies}</ignoredDependencies>
           </configuration>
         </plugin>
       </plugins>
