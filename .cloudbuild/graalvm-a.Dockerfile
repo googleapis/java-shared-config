@@ -33,7 +33,7 @@ RUN microdnf install -y google-cloud-sdk
 # Adding the package path to local
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
-# Install docker
+# Install docker, see https://docs.docker.com/engine/install/rhel/#set-up-the-repository
 COPY docker-ce.repo /etc/yum.repos.d/docker-ce.repo
 RUN microdnf install -y docker-ce docker-ce-cli
 
