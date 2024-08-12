@@ -14,8 +14,8 @@
 
 FROM ghcr.io/graalvm/graalvm-community:22.0.2-ol9-20240716
 
-RUN yum update -y && \
-    yum install -y wget unzip git && \
+RUN microdnf update -y && \
+    microdnf install -y wget unzip git && \
     # Install maven
     wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip -O /tmp/maven.zip && \
     unzip /tmp/maven.zip -d /tmp/maven && \
@@ -27,20 +27,20 @@ ENV PATH $PATH:/usr/local/lib/maven/bin
 
 # Install gcloud SDK
 COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
-RUN yum install -y google-cloud-sdk
+RUN microdnf install -y google-cloud-sdk
 
 # Adding the package path to local
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
 # Install docker
-RUN yum install -y docker-engine docker-cli
+RUN microdnf install -y docker-engine docker-cli
 
 # Install terraform
 # See also https://www.hashicorp.com/official-packaging-guide
 COPY hashicorp.repo /etc/yum.repos.d/hashicorp.repo
-RUN yum -y install terraform
+RUN microdnf -y install terraform
 
 # Install jq
-RUN yum -y install jq
+RUN microdnf -y install jq
 
 WORKDIR /workspace
