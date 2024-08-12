@@ -14,6 +14,7 @@
 
 FROM ghcr.io/graalvm/graalvm-community:22.0.2-ol9-20240716
 
+# use microdnf, see https://github.com/graalvm/container/issues/10
 RUN microdnf update -y && \
     microdnf install -y wget unzip git && \
     # Install maven
