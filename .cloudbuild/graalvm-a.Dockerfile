@@ -33,7 +33,8 @@ RUN microdnf install -y google-cloud-sdk
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
 # Install docker
-RUN microdnf install -y docker-ce docker-cli
+COPY docker-ce.repo /etc/yum.repos.d/docker-ce.repo
+RUN microdnf install -y docker-ce docker-ce-cli
 
 # Install terraform
 # See also https://www.hashicorp.com/official-packaging-guide
