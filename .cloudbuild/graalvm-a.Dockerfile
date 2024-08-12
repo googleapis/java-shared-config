@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/graalvm/graalvm-community:21.0.2-ol7-20240116
+FROM ghcr.io/graalvm/graalvm-community:22.0.2-ol9-20240716
 
 RUN yum update -y && \
     yum install -y wget unzip git && \
