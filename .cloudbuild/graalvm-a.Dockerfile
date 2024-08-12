@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/graalvm/graalvm-community:22.0.2-ol9-20240716
+FROM ghcr.io/graalvm/graalvm-community:21.0.2-ol9-20240116
 
 # use microdnf, see https://github.com/graalvm/container/issues/10
-RUN microdnf update -y && \
+RUN microdnf update -y oraclelinux-release-el9 && \
     microdnf install -y wget unzip git && \
     # Install maven
     wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip -O /tmp/maven.zip && \
