@@ -66,4 +66,6 @@ pushd sdk-platform-java/showcase
 mvn test -Pnative,-showcase -Denforcer.skip=true -ntp -B
 popd
 
+echo "hello"
+
 exit $RETURN_CODE
