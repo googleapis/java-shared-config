@@ -7,7 +7,7 @@ gpgkey=https://rpm.releases.hashicorp.com/gpg
 
 [hashicorp-test]
 name=Hashicorp Test - $basearch
-baseurl=https://archive.releases.hashicorp.com/RHEL/7/x$basearch/stable/
+baseurl=https://archive.releases.hashicorp.com/RHEL/7/x$basearch/test/
 enabled=0
 gpgcheck=1
 gpgkey=https://rpm.releases.hashicorp.com/gpg
