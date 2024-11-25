@@ -134,7 +134,6 @@
 
           mvn deploy -P=release-gcp-artifact-registry -P=-release-sonatype \
               -Dartifact-registry-url=artifactregistry://us-maven.pkg.dev/...
-          See
           -->
       <id>release-gcp-artifact-registry</id>
       <activation>
@@ -148,6 +147,10 @@
           <id>gcp-artifact-registry-repository</id>
           <url>${artifact-registry-url}</url>
         </repository>
+        <snapshotRepository>
+          <id>gcp-artifact-registry-repository</id>
+          <url>${artifact-registry-url}</url>
+        </snapshotRepository>
       </distributionManagement>
     </profile>
     <profile>
