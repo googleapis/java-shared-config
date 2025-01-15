@@ -1,8 +1,18 @@
 releaseType: java-yoshi
 handleGHRelease: true
-extraFiles: [".cloudbuild/cloudbuild.yaml", ".cloudbuild/cloudbuild-test-a.yaml", ".cloudbuild/cloudbuild-test-b.yaml" ]
+extraFiles:
+  - .cloudbuild/cloudbuild.yaml
+  - .cloudbuild/cloudbuild-test-a.yaml
+  - .cloudbuild/cloudbuild-test-b.yaml
 branches:
-- bumpMinorPreMajor: true
-  handleGHRelease: true
-  releaseType: java-yoshi
-  branch: java7
+  - bumpMinorPreMajor: true
+    handleGHRelease: true
+    releaseType: java-yoshi
+    branch: java7
+  - releaseType: java-backport
+    handleGHRelease: true
+    extraFiles:
+      - .cloudbuild/cloudbuild.yaml
+      - .cloudbuild/cloudbuild-test-a.yaml
+      - .cloudbuild/cloudbuild-test-b.yaml
+    branch: 1.13.x
