@@ -28,7 +28,7 @@
     <skipITs>true</skipITs>
     <auto-value.version>1.11.0</auto-value.version>
     <docRoot>/java/docs/reference/</docRoot>
-    <google-java-format.version>1.7</google-java-format.version>
+    <google-java-format.version>1.25.2</google-java-format.version>
   </properties>
 
   <build>
