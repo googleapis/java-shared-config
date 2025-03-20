@@ -87,6 +87,7 @@ cd ${scriptDir}/..
 
 # Make artifacts available for 'mvn validate' at the bottom
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
+mvn -Dplugin=com.spotify.fmt:fmt-maven-plugin help:describe
 
 # Read the current version of this BOM in the POM. Example version: '0.116.1-alpha-SNAPSHOT'
 VERSION_POM=java-shared-config/pom.xml
@@ -110,6 +111,7 @@ pushd sdk-platform-java-config
 replace_java_shared_config_version "${JAVA_SHARED_CONFIG_VERSION}"
 replace_java_shared_dependencies_version "${RELEASED_SHARED_DEPENDENCIES_VERSION}"
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgcloud.download.skip=true -B -V -q
+mvn -Dplugin=com.spotify.fmt:fmt-maven-plugin help:describe
 popd
 popd
 
@@ -130,6 +132,7 @@ if [ "${REPO_TAG}" == "v2.9.3" ] && [ "${REPO}" == "java-storage" ]; then
 else
   replace_sdk_platform_java_config_version "${SDK_PLATFORM_JAVA_CONFIG_VERSION}"
 fi
+mvn -Dplugin=com.spotify.fmt:fmt-maven-plugin help:describe
 
 case ${JOB_TYPE} in
 dependencies)
