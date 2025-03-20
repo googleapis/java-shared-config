@@ -156,7 +156,7 @@ flatten-plugin)
     ;;
 *)
     # we use the spotify version
-	sed -i 's/com.coveo:fmt-maven-plugin/com.spotify.fmt-maven-plugin/' .kokoro/build.sh
+	sed -i 's/com.coveo:fmt-maven-plugin/com.spotify.fmt:fmt-maven-plugin/' .kokoro/build.sh
     # This reads the JOB_TYPE environmental variable
     .kokoro/build.sh
     RETURN_CODE=$?
