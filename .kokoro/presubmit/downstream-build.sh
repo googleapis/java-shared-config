@@ -43,6 +43,7 @@ git clone "https://github.com/googleapis/sdk-platform-java" --depth=1
 
 # Update the shared-config version in showcase
 pushd sdk-platform-java/java-showcase
+git checkout prepare-showcase-graal-17 # temporary, in order to confirm fix included in that branch
 modify_shared_config
 popd
 
