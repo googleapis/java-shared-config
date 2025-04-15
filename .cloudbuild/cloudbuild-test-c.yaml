@@ -20,9 +20,11 @@ substitutions:
 steps:
   # GraalVM C build
 - name: 'bash'
+  env: 
   script: |
     #!/usr/bin/env bash
     echo "${_COMMIT_HASH_TAG}"
 
 options:
   logging: CLOUD_LOGGING_ONLY
+  automapSubstitutions: true
