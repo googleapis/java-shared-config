@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/graalvm/graalvm-community:21.0.2-ol9-20240116
+FROM ghcr.io/graalvm/graalvm-community:24.0.1-ol8-20250415
 
 # use microdnf, see https://github.com/graalvm/container/issues/10
 RUN microdnf update -y oraclelinux-release-el9 && \
