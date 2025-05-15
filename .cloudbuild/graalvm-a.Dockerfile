@@ -15,8 +15,7 @@
 FROM ghcr.io/graalvm/graalvm-community:24.0.1-ol8-20250415
 
 # use microdnf, see https://github.com/graalvm/container/issues/10
-RUN microdnf update -y oraclelinux-release-el9 && \
-    microdnf install -y wget unzip git && \
+RUN microdnf install -y wget unzip git && \
     # Install maven
     wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip -O /tmp/maven.zip && \
     unzip /tmp/maven.zip -d /tmp/maven && \
