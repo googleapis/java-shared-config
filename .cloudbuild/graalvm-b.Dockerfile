@@ -17,7 +17,8 @@ FROM ghcr.io/graalvm/graalvm-community:24.0.1-ol8-20250415
 # native-image comes out of the box
 RUN native-image --version
 
-RUN microdnf install -y wget unzip git && \
+RUN microdnf update -y oraclelinux-release-el8 && \
+    microdnf install -y wget unzip git && \
     # Install maven
     wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip -O /tmp/maven.zip && \
     unzip /tmp/maven.zip -d /tmp/maven && \
