@@ -6,3 +6,14 @@ branches:
   handleGHRelease: true
   releaseType: java-yoshi
   branch: java7
+- bumpMinorPreMajor: true
+  handleGHRelease: true
+  releaseType: java-yoshi
+  prereleaseType: rc
+  prerelease: true
+  branch: test-protobuf-4.x-prerelease
+- bumpMinorPreMajor: true
+  handleGHRelease: true
+  releaseType: java-yoshi
+  releaseAs: 2.0.0-rc1
+  branch: test-protobuf-4.x-rc
