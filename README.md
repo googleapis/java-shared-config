@@ -1,5 +1,5 @@
 # Google Cloud Shared Build Configs
-## Protobuf 4.x branch - v5
+## Protobuf 4.x branch - v6
 
 Shared Maven build configuration for Google Cloud Java client libraries.
 This is not intended for library users.
