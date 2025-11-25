@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0-rc.1](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc.1...v1.18.0-rc.1) (2025-11-25)
+
+
+### Features
+
+* minor bump ([8ec84c4](https://github.com/googleapis/java-shared-config/commit/8ec84c4818bf0e9493130ee505a2364e418bc447))
+
 ## [1.17.1-rc.1](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc...v1.17.1-rc.1) (2025-11-25)
 
 
