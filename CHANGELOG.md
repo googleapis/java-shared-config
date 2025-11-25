@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.0-rc.1](https://github.com/googleapis/java-shared-config/compare/v1.18.0-rc.1...v2.0.0-rc.1) (2025-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* breaking change
+
+### Features
+
+* breaking change ([49e27b1](https://github.com/googleapis/java-shared-config/commit/49e27b1f8d4f9ba3ab0a66a1ab0eb3a2a8aa3f1c))
+* minor bump ([8ec84c4](https://github.com/googleapis/java-shared-config/commit/8ec84c4818bf0e9493130ee505a2364e418bc447))
+* minor bump ([fd9feeb](https://github.com/googleapis/java-shared-config/commit/fd9feeba6ea58505ebf9d2bc1d1dd3666c91613a))
+
+
+### Bug Fixes
+
+* another patch bump ([fe6003b](https://github.com/googleapis/java-shared-config/commit/fe6003b1f10772211690401018ad0d07317c4b35))
+* test patch bump change ([0b486d1](https://github.com/googleapis/java-shared-config/commit/0b486d11caa5be82b6cdbfc24f5ebe0cbd0a2ad6))
+* update Protobuf branch version to v3 ([9336f8d](https://github.com/googleapis/java-shared-config/commit/9336f8df92a376962487c8358ad570a5dcc47017))
+
 ## [1.18.0-rc.1](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc.1...v1.18.0-rc.1) (2025-11-25)
 
 
