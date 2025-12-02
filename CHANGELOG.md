@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1-rc.1](https://github.com/googleapis/java-shared-config/compare/v1.18.0-rc.1...v1.18.1-rc.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* Update README with protobuf 4.x release candidate info ([#1049](https://github.com/googleapis/java-shared-config/issues/1049)) ([1c546ae](https://github.com/googleapis/java-shared-config/commit/1c546aed2f4002dcfbd10337cf36ba0a3da3ecf2))
+
 ## [1.17.0](https://github.com/googleapis/java-shared-config/compare/v1.16.1...v1.17.0) (2025-10-10)
 
 
