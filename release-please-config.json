@@ -1,5 +1,5 @@
 {
-  "release-type": "java-yoshi",
+  "release-type": "java-yoshi-monorepo",
   "prerelease-type": "rc1",
   "versioning": "prerelease",
   "separate-pull-requests": false,
