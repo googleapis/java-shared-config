@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.1-rc2](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc1...v1.17.1-rc2) (2025-12-03)
+
+
+### Bug Fixes
+
+* update README to include protobuf test branch info ([abb3bb8](https://github.com/googleapis/java-shared-config/commit/abb3bb8998bab4ff8f307f9a6796723e66885bc6))
+
 ## [1.17.1-rc1](https://github.com/googleapis/java-shared-config/compare/v1.17.0...v1.17.1-rc1) (2025-12-03)
 
 
