@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.17.1-rc1](https://github.com/googleapis/java-shared-config/compare/v1.17.0...v1.17.1-rc1) (2025-12-03)
+
+
+### Bug Fixes
+
+* (test) update release type to java-yoshi-monorepo ([f875818](https://github.com/googleapis/java-shared-config/commit/f8758188021b79ad4823ba3065f719dab5cee0d4))
+* add release manifest for version 1.18.1-rc1 ([fdece7e](https://github.com/googleapis/java-shared-config/commit/fdece7ec0aa578950a9ba552d9e08a871109a4ee))
+* Change release type from 'java-yoshi-monorepo' to 'java-yoshi' ([6af5bb7](https://github.com/googleapis/java-shared-config/commit/6af5bb782d9cf97ee4cb7363775f9b649a7c993d))
+* Update README with protobuf 4.x release candidate info ([#1049](https://github.com/googleapis/java-shared-config/issues/1049)) ([c651e2e](https://github.com/googleapis/java-shared-config/commit/c651e2e9bb8827c7aee3c812c01643242929063d))
+* update release version to 1.18.1-rc2 ([fcdf23a](https://github.com/googleapis/java-shared-config/commit/fcdf23aaae6be79b7af3b3b2e8a899e3a167e1d5))
+* use released version in manifest ([e5d38bc](https://github.com/googleapis/java-shared-config/commit/e5d38bc6b40fd37bc1f1a0c963d2bb6e8cc55fd7))
+
 ## [1.17.0](https://github.com/googleapis/java-shared-config/compare/v1.16.1...v1.17.0) (2025-10-10)
 
 
