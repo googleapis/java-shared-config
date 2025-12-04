@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.1-rc3](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc2...v1.17.1-rc3) (2025-12-04)
+
+
+### Bug Fixes
+
+* correct typo in README.md ([cc28c7b](https://github.com/googleapis/java-shared-config/commit/cc28c7bcaaaf4067d01525b4d45e183c2d5a5553))
+
 ## [1.17.1-rc2](https://github.com/googleapis/java-shared-config/compare/v1.17.1-rc1...v1.17.1-rc2) (2025-12-03)
 
 
