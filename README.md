@@ -1,6 +1,6 @@
 # Google Cloud Shared Build Configs
 
-This is the protobuf-4.x-rc test branch
+This is the protobuf-4.x-rc test branch.
 
 Shared Maven build configuration for Google Cloud Java client libraries.
 This is not intended for library users.
