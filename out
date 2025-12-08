@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/src/library_generation/cli/entry_point.py", line 266, in <module>
+    main()
+    ~~~~^^
+  File "/usr/local/lib/python3.13/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+  File "/usr/local/lib/python3.13/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/src/library_generation/cli/entry_point.py", line 136, in generate
+    __generate_repo_impl(
+    ~~~~~~~~~~~~~~~~~~~~^
+        generation_config_path=generation_config_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        api_definitions_path=api_definitions_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/src/library_generation/cli/entry_point.py", line 177, in __generate_repo_impl
+    raise FileNotFoundError(
+        f"Generation config {generation_config_path} does not exist."
+    )
+FileNotFoundError: Generation config /workspace/generation_config.yaml does not exist.
