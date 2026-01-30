@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.0](https://github.com/googleapis/java-shared-config/compare/v1.17.0...v1.18.0) (2026-01-30)
+
+
+### Features
+
+* Remove the graal-sdk.version property ([#1065](https://github.com/googleapis/java-shared-config/issues/1065)) ([97ca73c](https://github.com/googleapis/java-shared-config/commit/97ca73cecd5ed37f8d1a84ee8bbf67dade09ae70))
+* Use only nativeimage.version property in depManagement ([#1067](https://github.com/googleapis/java-shared-config/issues/1067)) ([9749349](https://github.com/googleapis/java-shared-config/commit/9749349a1b427a38b6241ff55621e5fe982a0a60))
+
 ## [1.17.0](https://github.com/googleapis/java-shared-config/compare/v1.16.1...v1.17.0) (2025-10-10)
 
 
