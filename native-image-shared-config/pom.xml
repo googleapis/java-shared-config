@@ -58,7 +58,7 @@
   </licenses>
 
   <properties>
-    <surefire.version>3.5.2</surefire.version>
+    <surefire.version>3.5.4</surefire.version>
     <graal-sdk-nativeimage.version>25.0.0</graal-sdk-nativeimage.version>
     <native-maven-plugin.version>0.10.6</native-maven-plugin.version>
     <junit-vintage-engine.version>5.11.4</junit-vintage-engine.version>
