@@ -130,9 +130,6 @@ fi
 
 pushd ${REPO}
 
-# Force update dependencies in target repo
-sed -i 's/mvn install/mvn install -U/' .kokoro/dependencies.sh
-
 # If using an older version of java-storage, continue replacing java-shared-config version otherwise replace
 # the version of sdk-platform-java-config.
 if [ "${REPO_TAG}" == "v2.9.3" ] && [ "${REPO}" == "java-storage" ]; then
