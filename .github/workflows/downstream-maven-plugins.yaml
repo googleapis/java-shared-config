@@ -24,7 +24,7 @@ jobs:
         - javadoc # maven-javadoc-plugin
         - javadoc-with-doclet # test javadoc generation with doclet
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
     - uses: actions/setup-java@v4
       with:
         distribution: zulu
@@ -45,7 +45,7 @@ jobs:
         job-type:
         - lint  # fmt-maven-plugin and google-java-format
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
     - uses: actions/setup-java@v4
       with:
         distribution: zulu
@@ -74,7 +74,7 @@ jobs:
         - java-datastore
         - java-bigquerystorage
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
     - uses: actions/setup-java@v4
       with:
         distribution: temurin
